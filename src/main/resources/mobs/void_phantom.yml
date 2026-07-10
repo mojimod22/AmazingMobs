@@ -1,0 +1,73 @@
+# Archetype: TELEPORT SKIRMISHER — blinks in and out, never where you expect.
+# Tactical role: slippery duelist that resets fights. Counter: corner it / AoE.
+id: void_phantom
+name: "<gradient:#311b92:#7c4dff>Void Phantom</gradient>"
+lore:
+  - "<dark_purple>Here. Then not. Then behind you."
+type: ENDERMAN
+tier: ELITE
+category: skirmisher
+tags: [void, melee, mobile]
+
+stats:
+  health: 80
+  damage: 11
+  speed: 0.30
+  armor: 4
+  follow-range: 48
+  crit-chance: 0.2
+  crit-multiplier: 1.8
+
+ai:
+  aggression: AGGRESSIVE
+  movement: STRAFE
+  target-priority: [RANDOM, NEAREST]
+  aggro-range: 48
+
+skills:
+  - skill: blink
+    label: "Void Step"
+    trigger:
+      types: [TICK]
+      cooldown: 5s
+      min-range: 8
+      max-range: 28
+      chance: 0.85
+    params:
+      mode: to_target
+      distance: 2
+      sound: entity_enderman_teleport
+  - skill: vanish
+    label: "Phase Out"
+    trigger:
+      types: [ON_DAMAGED]
+      cooldown: 9s
+      chance: 0.35
+      duration: 2s
+    params:
+      particle: portal
+  - skill: dash
+    label: "Lunge"
+    trigger:
+      types: [TICK]
+      cooldown: 4s
+      min-range: 3
+      max-range: 10
+      chance: 0.6
+    params:
+      power: 1.5
+
+drops:
+  xp: 30-55
+  items:
+    - { material: ENDER_PEARL, amount: 1-3, chance: 0.7 }
+    - { material: ENDER_EYE, amount: 1, chance: 0.15 }
+
+presentation:
+  glow: false
+  ambient-particle: portal
+
+scaling:
+  health-per-player: 0.09
+  damage-per-player: 0.06
+  max-players: 8

@@ -1,0 +1,54 @@
+# AMBUSH-STYLE · low numbers, high lethality. Assassins single you out. Stay grouped.
+id: shadow_hunt
+name: "<dark_gray>Shadow Hunt</dark_gray>"
+description: "You are not defending. You are the prey."
+difficulty: 1.45
+duration: 8m
+cooldown: 22m
+
+area:
+  shape: SPHERE
+  radius: 70
+  dynamic: true
+
+spawn:
+  max-per-tick: 5
+  max-mobs: 35
+  min-player-distance: 16
+  attempts: 30
+
+activation:
+  min-players: 1
+  max-players: 8
+
+start-title: "<dark_gray><bold>Shadow Hunt</bold></dark_gray>"
+start-subtitle: "<gray>Something is hunting you</gray>"
+sound: entity_enderman_stare
+
+waves:
+  - label: "First Blood"
+    start-delay: 4s
+    mobs:
+      - { mob: umbral_ambusher, count: 3-4, per-player: 1, role: elite }
+  - label: "The Pack"
+    start-delay: 6s
+    mobs:
+      - { mob: nightshade_stalker, count: 2-3, per-player: 1, role: elite }
+      - { mob: void_phantom, count: 1-2, per-player: 1, role: elite }
+  - label: "The Master"
+    start-delay: 6s
+    clear-threshold: 1.0
+    title: "<dark_gray>The hunt-master reveals itself</dark_gray>"
+    mobs:
+      - { mob: nightshade_stalker, count: 2, role: boss, boss: true }
+      - { mob: umbral_ambusher, count: 2-3, per-player: 1 }
+
+rewards:
+  xp: 200-360
+  message: "<green>The hunters become the hunted. You win."
+  items:
+    - { material: ENDER_PEARL, amount: 2-4, chance: 0.7 }
+    - { material: NETHERITE_SCRAP, amount: 1, chance: 0.2 }
+
+end-message: "<green><bold>You turned the Shadow Hunt!</bold>"
+fail-message: "<red>Picked off, one by one..."

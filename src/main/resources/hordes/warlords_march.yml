@@ -1,0 +1,58 @@
+# COMMAND-LED ARMY · a disciplined host with two Warlords buffing rank-and-file marauders.
+id: warlords_march
+name: "<color:#90a4ae><bold>Warlord's March</bold></color>"
+description: "A true army on the march — shielded, buffed, and led from the front."
+difficulty: 1.65
+duration: 11m
+cooldown: 30m
+
+area:
+  shape: CUBE
+  radius: 75
+  height: 30
+  dynamic: true
+
+spawn:
+  max-per-tick: 9
+  max-mobs: 85
+  min-player-distance: 12
+  attempts: 26
+
+activation:
+  min-players: 2
+  max-players: 12
+
+start-title: "<color:#90a4ae><bold>Warlord's March</bold></color>"
+start-subtitle: "<gray>Boots and steel, in perfect order</gray>"
+sound: event_raid_horn
+
+waves:
+  - label: "The Rank and File"
+    start-delay: 3s
+    mobs:
+      - { mob: husk_marauder, count: 8-10, per-player: 3 }
+      - { mob: skeletal_grunt, count: 4-6, per-player: 2 }
+  - label: "The Officers"
+    start-delay: 5s
+    mobs:
+      - { mob: iron_warlord, count: 1, role: miniboss }
+      - { mob: aegis_sentinel, count: 2-3, per-player: 1, role: elite }
+      - { mob: husk_marauder, count: 5-7, per-player: 2 }
+  - label: "High Command"
+    start-delay: 6s
+    clear-threshold: 1.0
+    title: "<color:#90a4ae>High Command commits</color>"
+    mobs:
+      - { mob: iron_warlord, count: 2, role: boss, boss: true }
+      - { mob: aegis_sentinel, count: 2, per-player: 1, role: elite }
+
+rewards:
+  xp: 320-560
+  message: "<green>The army routs. Their banners fall."
+  items:
+    - { material: IRON_BLOCK, amount: 3-6, chance: 0.9 }
+    - { material: EMERALD, amount: 4-8, chance: 0.7 }
+    - { material: ENCHANTED_GOLDEN_APPLE, amount: 1-2, chance: 0.3 }
+
+end-message: "<green><bold>The Warlord's March is broken!</bold>"
+fail-message: "<red>The army marches over you..."

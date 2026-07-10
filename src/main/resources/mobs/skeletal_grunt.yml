@@ -1,0 +1,36 @@
+# Fodder: ranged body. Uses its bow via vanilla AI; thins out unprotected players.
+id: skeletal_grunt
+name: "<gray>Bonecaller</gray>"
+type: SKELETON
+tier: COMMON
+category: fodder
+tags: [undead, ranged, fodder]
+stats:
+  health: 24
+  damage: 3
+  speed: 0.25
+  armor: 3
+  follow-range: 40
+equipment:
+  main-hand:
+    material: BOW
+    enchants: { power: 1 }
+    drop-chance: 0.05
+  helmet: { material: CHAINMAIL_HELMET, drop-chance: 0.03 }
+ai:
+  aggression: AGGRESSIVE
+  movement: KITE
+  burns-in-day: false
+skills:
+  - skill: arrow_volley
+    label: "Volley"
+    trigger: { types: [TICK], cooldown: 4s, min-range: 6, max-range: 32, target: NEAREST_PLAYER, chance: 0.5 }
+    params: { type: arrow, count: 2, spread: 0.12, damage: 3 }
+drops:
+  xp: 3-8
+  items:
+    - { material: BONE, amount: 1-2, chance: 0.6 }
+    - { material: ARROW, amount: 2-5, chance: 0.4 }
+scaling:
+  health-per-player: 0.08
+  max-players: 8

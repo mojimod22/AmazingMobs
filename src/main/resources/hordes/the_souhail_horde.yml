@@ -1,0 +1,51 @@
+# THE SOUHAIL HORDE · a boss duel. Souhail Moutmir leads his all-female squad of Giocatrici — they
+# dance around you landing fast jabs to pin you while Souhail breaks off to drop his explosive
+# wither-skull barrage. One Souhail, many Giocatrici.
+id: the_souhail_horde
+name: "<dark_red>The Souhail Horde</dark_red>"
+description: "Souhail Moutmir and his dancing squad — fast jabs to pin you, then an explosive barrage."
+difficulty: 1.4
+duration: 8m
+
+area:
+  shape: SPHERE
+  radius: 50
+  dynamic: true
+
+spawn:
+  max-per-tick: 6
+  max-mobs: 40
+  min-player-distance: 10
+  attempts: 28
+
+activation:
+  min-players: 1
+  max-players: 10
+
+start-title: "<dark_red><bold>The Souhail Horde</bold></dark_red>"
+start-subtitle: "<gray>The squad takes the floor</gray>"
+sound: entity_wither_spawn
+
+end-message: "<green>You broke the squad — Souhail Moutmir falls.</green>"
+fail-message: "<red>The dance was yours to lose.</red>"
+
+rewards:
+  xp: 300-500
+  items:
+    - { material: ENCHANTED_GOLDEN_APPLE, amount: 2-4, chance: 1.0 }
+    - { material: EMERALD_BLOCK, amount: 1-2, chance: 0.8 }
+
+waves:
+  - label: "La Squadra"
+    start-delay: 3s
+    message: "<light_purple>Le Giocatrici prendono il campo…</light_purple>"
+    mobs:
+      - { mob: giocatrice_squadra_femminile, count: 6, per-player: 2 }
+  - label: "Souhail Moutmir"
+    start-delay: 5s
+    clear-threshold: 1.0
+    title: "<dark_red><bold>Souhail Moutmir entra in campo</bold></dark_red>"
+    subtitle: "<gray>Incazzatissimo</gray>"
+    mobs:
+      - { mob: souhail_moutmir, count: 1, role: boss, boss: true }
+      - { mob: giocatrice_squadra_femminile, count: 8, per-player: 2 }

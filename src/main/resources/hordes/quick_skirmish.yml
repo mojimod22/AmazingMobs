@@ -1,0 +1,47 @@
+# MINI-EVENT · short, low cooldown. A quick burst of action for a single player or two.
+id: quick_skirmish
+name: "<gray>Quick Skirmish</gray>"
+description: "A brief clash — in and out in a couple of minutes."
+difficulty: 1.0
+duration: 3m
+cooldown: 5m
+
+area:
+  shape: SPHERE
+  radius: 45
+  dynamic: true
+
+spawn:
+  max-per-tick: 6
+  max-mobs: 30
+  min-player-distance: 8
+  attempts: 22
+
+activation:
+  min-players: 1
+  max-players: 6
+
+start-title: "<gray>Quick Skirmish</gray>"
+sound: entity_zombie_ambient
+
+waves:
+  - label: "Clash"
+    start-delay: 2s
+    mobs:
+      - { mob: zombie_grunt, count: 5-7, per-player: 2 }
+      - { mob: skeletal_grunt, count: 2-3, per-player: 1 }
+  - label: "Reinforcements"
+    start-delay: 3s
+    clear-threshold: 1.0
+    mobs:
+      - { mob: husk_marauder, count: 2-3, per-player: 1 }
+      - { mob: umbral_ambusher, count: 1, per-player: 1, role: elite }
+
+rewards:
+  xp: 30-60
+  items:
+    - { material: IRON_INGOT, amount: 1-3, chance: 0.7 }
+    - { material: ARROW, amount: 4-8, chance: 0.4 }
+
+end-message: "<green>Skirmish won."
+fail-message: "<red>Caught off guard..."

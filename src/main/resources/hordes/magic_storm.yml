@@ -1,0 +1,58 @@
+# MAGIC-HEAVY · casters, debuffs and a pocket healer. Punishes players who can't close distance.
+id: magic_storm
+name: "<blue>Magic Storm</blue>"
+description: "A maelstrom of spells — fire, frost, lightning and rot."
+difficulty: 1.55
+duration: 9m
+cooldown: 26m
+
+area:
+  shape: SPHERE
+  radius: 70
+  dynamic: true
+
+spawn:
+  max-per-tick: 7
+  max-mobs: 55
+  min-player-distance: 14
+  attempts: 28
+
+activation:
+  min-players: 2
+  max-players: 10
+
+start-title: "<blue><bold>Magic Storm</bold></blue>"
+start-subtitle: "<gray>The arcane gathers</gray>"
+sound: entity_evoker_cast_spell
+
+waves:
+  - label: "Conjurers"
+    start-delay: 3s
+    mobs:
+      - { mob: ember_magus, count: 2-3, per-player: 1 }
+      - { mob: permafrost_revenant, count: 2-3, per-player: 1 }
+  - label: "Stormcallers"
+    start-delay: 5s
+    mobs:
+      - { mob: storm_herald, count: 2-3, per-player: 1, role: elite }
+      - { mob: frost_weaver, count: 1-2, per-player: 1, role: elite }
+      - { mob: verdant_mender, count: 1, per-player: 1, role: elite }
+  - label: "The Archmage's Circle"
+    start-delay: 5s
+    clear-threshold: 1.0
+    title: "<blue>The circle is complete</blue>"
+    mobs:
+      - { mob: bonelord_necromancer, count: 1, role: boss, boss: true }
+      - { mob: frost_weaver, count: 1, per-player: 1, role: elite }
+      - { mob: storm_herald, count: 1, per-player: 1, role: elite }
+
+rewards:
+  xp: 250-450
+  message: "<green>The storm of magic collapses."
+  items:
+    - { material: EXPERIENCE_BOTTLE, amount: 8-16, chance: 0.8 }
+    - { material: ENCHANTED_BOOK, amount: 1, chance: 0.3 }
+    - { material: DIAMOND, amount: 1-3, chance: 0.5 }
+
+end-message: "<green><bold>The Magic Storm is dispelled!</bold>"
+fail-message: "<red>Overwhelmed by sorcery..."

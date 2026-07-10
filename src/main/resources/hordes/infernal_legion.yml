@@ -1,0 +1,62 @@
+# INFERNAL MEGA-EVENT · the full burning host — artillery, casters, and a Magma Tyrant vanguard
+# before a Dread Overlord finale. A flagship fire event.
+id: infernal_legion
+name: "<gold><bold>Infernal Legion</bold></gold>"
+description: "The deep fires send their whole legion. Bring water and courage."
+difficulty: 1.85
+duration: 14m
+cooldown: 45m
+
+area:
+  shape: CYLINDER
+  radius: 85
+  height: 35
+  dynamic: true
+
+spawn:
+  max-per-tick: 9
+  max-mobs: 90
+  min-player-distance: 14
+  attempts: 28
+
+activation:
+  min-players: 3
+  max-players: 12
+
+start-title: "<gold><bold>INFERNAL LEGION</bold></gold>"
+start-subtitle: "<red>The earth itself catches fire</red>"
+sound: entity_blaze_ambient
+
+waves:
+  - label: "Vanguard of Ash"
+    start-delay: 4s
+    mobs:
+      - { mob: ember_magus, count: 3-4, per-player: 1 }
+      - { mob: cinder_lobber, count: 2-3, per-player: 1, role: elite }
+      - { mob: zombie_grunt, count: 6-8, per-player: 2 }
+  - label: "The Tyrant's Legion"
+    start-delay: 6s
+    title: "<gold>A Magma Tyrant leads the charge</gold>"
+    mobs:
+      - { mob: magma_tyrant, count: 1-2, per-player: 1, role: miniboss }
+      - { mob: cinder_lobber, count: 2-3, per-player: 1, role: elite }
+  - label: "Hellfire Crescendo"
+    start-delay: 7s
+    clear-threshold: 1.0
+    title: "<gold><bold>The Overlord descends in fire</bold></gold>"
+    sound: entity_wither_spawn
+    mobs:
+      - { mob: dread_overlord, count: 1, role: boss, boss: true }
+      - { mob: magma_tyrant, count: 1, per-player: 1, role: elite }
+
+rewards:
+  xp: 600-1050
+  message: "<green>The fires die. The legion is ash."
+  items:
+    - { material: NETHERITE_INGOT, amount: 1-3, chance: 0.7 }
+    - { material: BLAZE_ROD, amount: 6-12, chance: 0.9 }
+    - { material: ENCHANTED_GOLDEN_APPLE, amount: 1-3, chance: 0.5 }
+    - { material: NETHER_STAR, amount: 1, chance: 0.2 }
+
+end-message: "<green><bold>The Infernal Legion is broken!</bold>"
+fail-message: "<red>The legion reduces all to cinders..."

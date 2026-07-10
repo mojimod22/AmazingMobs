@@ -1,0 +1,58 @@
+# MIXED ASSAULT · a balanced cross-section of the horde: melee, ranged, control, a boss.
+id: mixed_assault
+name: "<white>Mixed Assault</white>"
+description: "A bit of everything — adapt or fall."
+difficulty: 1.4
+duration: 9m
+cooldown: 20m
+
+area:
+  shape: CYLINDER
+  radius: 70
+  height: 30
+  dynamic: true
+
+spawn:
+  max-per-tick: 8
+  max-mobs: 65
+  min-player-distance: 12
+  attempts: 26
+
+activation:
+  min-players: 1
+  max-players: 10
+
+start-title: "<white><bold>Mixed Assault</bold></white>"
+start-subtitle: "<gray>A combined-arms attack</gray>"
+sound: entity_wither_ambient
+
+waves:
+  - label: "Skirmish Line"
+    start-delay: 3s
+    mobs:
+      - { mob: zombie_grunt, count: 6-8, per-player: 2 }
+      - { mob: skeletal_grunt, count: 3-5, per-player: 1 }
+      - { mob: spiderling, count: 4-6, per-player: 2 }
+  - label: "Combined Arms"
+    start-delay: 5s
+    mobs:
+      - { mob: bonecrusher_juggernaut, count: 1, per-player: 1, role: elite }
+      - { mob: ember_magus, count: 1-2, per-player: 1 }
+      - { mob: frost_weaver, count: 1, per-player: 1, role: elite }
+  - label: "Commander"
+    start-delay: 5s
+    clear-threshold: 1.0
+    title: "<white>Their commander steps forward</white>"
+    mobs:
+      - { mob: iron_warlord, count: 1, role: boss, boss: true }
+      - { mob: husk_marauder, count: 3-5, per-player: 2 }
+
+rewards:
+  xp: 200-380
+  message: "<green>A clean, hard-won victory."
+  items:
+    - { material: DIAMOND, amount: 2-4, chance: 0.7 }
+    - { material: EMERALD, amount: 2-5, chance: 0.6 }
+
+end-message: "<green><bold>Mixed Assault repelled!</bold>"
+fail-message: "<red>Outmaneuvered on every front..."

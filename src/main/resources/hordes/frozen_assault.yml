@@ -1,0 +1,55 @@
+# FROZEN · ice-themed control gauntlet. Bring fire — the casters melt fast.
+id: frozen_assault
+name: "<aqua>Frozen Assault</aqua>"
+description: "A creeping cold rolls in, and with it, things that do not thaw."
+difficulty: 1.3
+duration: 8m
+cooldown: 22m
+
+area:
+  shape: SPHERE
+  radius: 65
+  dynamic: true
+
+spawn:
+  max-per-tick: 7
+  max-mobs: 55
+  min-player-distance: 12
+  attempts: 28
+
+activation:
+  min-players: 1
+  max-players: 8
+
+start-title: "<aqua><bold>Frozen Assault</bold></aqua>"
+start-subtitle: "<gray>The air bites at your skin</gray>"
+sound: block_glass_break
+
+waves:
+  - label: "First Frost"
+    start-delay: 3s
+    mobs:
+      - { mob: permafrost_revenant, count: 3-5, per-player: 1 }
+      - { mob: skeletal_grunt, count: 4-6, per-player: 2 }
+  - label: "Deep Winter"
+    start-delay: 5s
+    mobs:
+      - { mob: permafrost_revenant, count: 4-6, per-player: 2 }
+      - { mob: frost_weaver, count: 1-2, per-player: 1, role: elite }
+  - label: "The Weaver"
+    start-delay: 5s
+    clear-threshold: 1.0
+    title: "<aqua>A Frost Weaver takes the field</aqua>"
+    mobs:
+      - { mob: frost_weaver, count: 1, role: boss, boss: true }
+      - { mob: permafrost_revenant, count: 2-3, per-player: 1 }
+
+rewards:
+  xp: 160-300
+  message: "<green>The cold recedes."
+  items:
+    - { material: BLUE_ICE, amount: 2-5, chance: 0.7 }
+    - { material: DIAMOND, amount: 1-3, chance: 0.5 }
+
+end-message: "<green><bold>The Frozen Assault thaws away.</bold>"
+fail-message: "<red>You freeze where you stand..."

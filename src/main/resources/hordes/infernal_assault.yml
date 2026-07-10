@@ -1,0 +1,57 @@
+# INFERNAL · fire everywhere. Mortars, casters, and a Magma Tyrant finale.
+id: infernal_assault
+name: "<gold>Infernal Assault</gold>"
+description: "The ground runs molten as the burning host advances."
+difficulty: 1.4
+duration: 9m
+cooldown: 24m
+
+area:
+  shape: CYLINDER
+  radius: 70
+  height: 30
+  dynamic: true
+
+spawn:
+  max-per-tick: 7
+  max-mobs: 55
+  min-player-distance: 14
+  attempts: 28
+
+activation:
+  min-players: 1
+  max-players: 8
+
+start-title: "<gold><bold>Infernal Assault</bold></gold>"
+start-subtitle: "<red>Heat shimmers on the horizon</red>"
+sound: entity_blaze_ambient
+
+waves:
+  - label: "Embers"
+    start-delay: 3s
+    mobs:
+      - { mob: ember_magus, count: 3-4, per-player: 1 }
+      - { mob: zombie_grunt, count: 4-6, per-player: 2 }
+  - label: "Bombardment"
+    start-delay: 5s
+    mobs:
+      - { mob: cinder_lobber, count: 2-3, per-player: 1 }
+      - { mob: ember_magus, count: 2-3, per-player: 1 }
+  - label: "The Tyrant"
+    start-delay: 5s
+    clear-threshold: 1.0
+    title: "<gold>The Magma Tyrant erupts</gold>"
+    sound: entity_magma_cube_jump
+    mobs:
+      - { mob: magma_tyrant, count: 1, role: boss, boss: true }
+      - { mob: cinder_lobber, count: 1-2, per-player: 1 }
+
+rewards:
+  xp: 180-320
+  message: "<green>The fires gutter out."
+  items:
+    - { material: BLAZE_ROD, amount: 3-6, chance: 0.8 }
+    - { material: NETHERITE_SCRAP, amount: 1, chance: 0.15 }
+
+end-message: "<green><bold>The Infernal Assault is extinguished!</bold>"
+fail-message: "<red>The flames consume everything..."

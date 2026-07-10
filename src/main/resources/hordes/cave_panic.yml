@@ -1,0 +1,51 @@
+# CAVE PANIC · a biome-gated underground swarm — bats and crawlers boil out of the dark.
+# Only triggers in cave biomes (or use /am start cave_panic force to test anywhere).
+id: cave_panic
+name: "<dark_gray><bold>Cave Panic</bold></dark_gray>"
+description: "You dug too greedily, and too deep."
+difficulty: 1.35
+duration: 8m
+cooldown: 20m
+
+area: { shape: SPHERE, radius: 45, dynamic: true }
+spawn: { max-per-tick: 10, max-mobs: 80, min-player-distance: 8, attempts: 24 }
+activation:
+  min-players: 1
+  max-players: 8
+  biomes-allow: [dripstone_caves, lush_caves, deep_dark]
+
+start-title: "<dark_gray><bold>Cave Panic</bold></dark_gray>"
+start-subtitle: "<gray>The walls are alive</gray>"
+sound: ambient_cave
+
+waves:
+  - label: "Skittering Dark"
+    start-delay: 3s
+    clear-threshold: 0.85
+    mobs:
+      - { mob: spiderling, count: 10-14, per-player: 4 }
+      - { mob: echo_bat, count: 6-8, per-player: 2 }
+  - label: "From the Deep"
+    start-delay: 4s
+    mobs:
+      - { mob: umbral_ambusher, count: 2-3, per-player: 1, role: elite }
+      - { mob: hex_bat, count: 4-6, per-player: 2 }
+      - { mob: blood_bat, count: 3-5, per-player: 1 }
+  - label: "The Broodmother Stirs"
+    start-delay: 5s
+    clear-threshold: 1.0
+    title: "<dark_gray>Something huge approaches</dark_gray>"
+    mobs:
+      - { mob: broodmother, count: 1, role: boss, boss: true }
+      - { mob: spiderling, count: 8-10, per-player: 3 }
+
+rewards:
+  xp: 170-320
+  message: "<green>The cave goes quiet again. For now."
+  items:
+    - { material: STRING, amount: 6-12, chance: 0.8 }
+    - { material: DIAMOND, amount: 1-3, chance: 0.5 }
+    - { material: AMETHYST_SHARD, amount: 2-5, chance: 0.4 }
+
+end-message: "<green><bold>Cave Panic subsides!</bold>"
+fail-message: "<red>The dark swallows you whole."

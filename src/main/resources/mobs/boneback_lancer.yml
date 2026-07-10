@@ -1,0 +1,47 @@
+# MOUNTED UNIT · spawns already riding a Bonesteed. If the steed dies it ENRAGES (and fights on
+# foot); if the lancer dies the steed lives on. Showcases the mount system + death-chain options.
+id: boneback_lancer
+name: "<color:#d7ccc8>Boneback Lancer</color>"
+lore: ["<gray>Death rides a pale, bony horse."]
+type: WITHER_SKELETON
+tier: ELITE
+category: cavalry
+tags: [undead, melee, mounted]
+stats:
+  health: 70
+  damage: 9
+  speed: 0.3
+  armor: 8
+  follow-range: 44
+  attack-knockback: 0.6
+equipment:
+  main-hand: { material: NETHERITE_SWORD, name: "<gray>Lance", enchants: { sharpness: 3 }, drop-chance: 0.04 }
+  helmet: { material: IRON_HELMET, drop-chance: 0.03 }
+ai:
+  aggression: AGGRESSIVE
+  movement: CHASE
+  aggro-range: 44
+
+mount:
+  mob: bonesteed
+  on-mount-death: ENRAGE          # thrown clear and enraged when the steed falls
+  rider-bonus: [resistance:0]
+  kill-mount-when-rider-dies: false
+
+traits:
+  - { trait: hunter, drive: false, reach: 3.0 }
+  - { trait: revenge, strength: 1 }
+
+skills:
+  - skill: strike
+    label: "Lance Thrust"
+    trigger: { types: [TICK], cooldown: 1s, max-range: 3.2, target: TARGET }
+    params: { damage: 9, knockback: 0.6 }
+
+drops:
+  xp: 28-48
+  items:
+    - { material: BONE, amount: 2-4, chance: 0.6 }
+    - { material: IRON_INGOT, amount: 1-3, chance: 0.4 }
+
+scaling: { health-per-player: 0.1, damage-per-player: 0.05, max-players: 8 }

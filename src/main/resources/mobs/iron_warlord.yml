@@ -1,0 +1,90 @@
+# Archetype: ELITE COMMANDER — empowers the whole horde and calls in reinforcements.
+# Tactical role: the brain of an army. Killing it collapses a push. Priority target.
+id: iron_warlord
+name: "<gradient:#455a64:#cfd8dc><bold>Iron Warlord</bold></gradient>"
+lore:
+  - "<gray>Where it commands, the horde obeys."
+type: VINDICATOR
+tier: MINIBOSS
+category: commander
+tags: [melee, commander, support]
+
+stats:
+  health: 180
+  damage: 11
+  speed: 0.30
+  armor: 10
+  armor-toughness: 3
+  knockback-resistance: 0.5
+  follow-range: 44
+
+equipment:
+  main-hand: { material: IRON_AXE, name: "<gray>Warlord's Cleaver", enchants: { sharpness: 3 }, unbreakable: true, drop-chance: 0.05 }
+  chestplate: { material: IRON_CHESTPLATE, enchants: { protection: 2 }, drop-chance: 0.03 }
+
+ai:
+  aggression: AGGRESSIVE
+  movement: CHASE
+  target-priority: [NEAREST]
+  aggro-range: 44
+  reinforcements:
+    enabled: true
+    mob: husk_marauder
+    count: 1-2
+    cooldown: 18s
+
+skills:
+  - skill: buff
+    label: "Rally"
+    trigger:
+      types: [TICK]
+      cooldown: 10s
+      target: ALL_IN_RADIUS
+      radius: 16
+      duration: 8s
+    params:
+      effects:
+        - { type: strength, amplifier: 0 }
+        - { type: speed, amplifier: 0 }
+      particle: angry_villager
+      sound: event_raid_horn
+  - skill: summon
+    label: "Reinforce"
+    trigger:
+      types: [TICK]
+      cooldown: 14s
+      chance: 0.7
+    params:
+      mob: husk_marauder
+      count: 2
+      spread: 4
+  - skill: dash
+    label: "Warlord's Charge"
+    trigger:
+      types: [TICK]
+      cooldown: 7s
+      min-range: 4
+      max-range: 16
+      chance: 0.6
+    params:
+      power: 1.5
+      upward: 0.25
+
+drops:
+  xp: 60-110
+  items:
+    - { material: IRON_BLOCK, amount: 2-4, chance: 0.6 }
+    - { material: EMERALD, amount: 2-6, chance: 0.5 }
+    - { material: ENCHANTED_GOLDEN_APPLE, amount: 1, chance: 0.1 }
+
+presentation:
+  glow: true
+  glow-color: WHITE
+  boss-bar: true
+  boss-bar-color: WHITE
+  boss-bar-title: "<gray>Iron Warlord"
+
+scaling:
+  health-per-player: 0.16
+  damage-per-player: 0.05
+  max-players: 8

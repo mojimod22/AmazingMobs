@@ -1,0 +1,47 @@
+# IRON CAVALRY · a siege column — catapult fiends lobbing minions, bone cavalry, and a Living Totem.
+# Showcases the projectile-mob, mount and stack systems together in one event.
+id: iron_cavalry
+name: "<color:#90a4ae><bold>Iron Cavalry</bold></color>"
+description: "Mounted, stacked, and throwing your own minions back at you."
+difficulty: 1.7
+duration: 11m
+cooldown: 30m
+
+area: { shape: CUBE, radius: 75, height: 30, dynamic: true }
+spawn: { max-per-tick: 8, max-mobs: 80, min-player-distance: 12, attempts: 28 }
+activation: { min-players: 2, max-players: 12 }
+
+start-title: "<color:#90a4ae><bold>Iron Cavalry</bold></color>"
+start-subtitle: "<gray>Hooves and siege engines</gray>"
+sound: entity_ravager_roar
+
+waves:
+  - label: "Bombardment"
+    start-delay: 3s
+    mobs:
+      - { mob: catapult_fiend, count: 1-2, per-player: 1, role: elite }
+      - { mob: zombie_grunt, count: 6-8, per-player: 2 }
+  - label: "The Charge"
+    start-delay: 5s
+    title: "<color:#90a4ae>Cavalry charges!</color>"
+    mobs:
+      - { mob: boneback_lancer, count: 2-3, per-player: 1, role: elite }
+      - { mob: catapult_fiend, count: 1, per-player: 1, role: elite }
+  - label: "The Living Totem"
+    start-delay: 6s
+    clear-threshold: 1.0
+    title: "<gold>A Living Totem advances</gold>"
+    mobs:
+      - { mob: living_totem, count: 1, role: boss, boss: true }
+      - { mob: boneback_lancer, count: 1-2, per-player: 1, role: elite }
+
+rewards:
+  xp: 280-500
+  message: "<green>The cavalry is unhorsed and the totem toppled."
+  items:
+    - { material: IRON_BLOCK, amount: 3-6, chance: 0.8 }
+    - { material: DIAMOND, amount: 2-5, chance: 0.6 }
+    - { material: NETHERITE_SCRAP, amount: 1-2, chance: 0.25 }
+
+end-message: "<green><bold>Iron Cavalry broken!</bold>"
+fail-message: "<red>Trampled and buried..."

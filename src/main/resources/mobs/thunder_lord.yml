@@ -1,0 +1,66 @@
+# THUNDER LORD · calls lightning around itself to terrify, and onto players with a light blast.
+id: thunder_lord
+name: "<gradient:#fff176:#fffde7><bold>Thunder Lord</bold></gradient>"
+lore:
+  - "<yellow>The storm bends to its will."
+type: WITHER_SKELETON
+tier: MINIBOSS
+category: thunder
+tags: [thunder, caster, boss]
+
+stats:
+  health: 170
+  damage: 9
+  speed: 0.3
+  armor: 12
+  armor-toughness: 4
+  knockback-resistance: 0.6
+  follow-range: 50
+  burns-in-day: false
+
+equipment:
+  main-hand: { material: GOLDEN_SWORD, name: "<yellow>Stormbrand", enchants: { sharpness: 3 }, glow: true, unbreakable: true, drop-chance: 0.05 }
+  helmet: { material: DIAMOND_HELMET, enchants: { protection: 2 }, drop-chance: 0.03 }
+  chestplate: { material: GOLDEN_CHESTPLATE, enchants: { protection: 2 }, drop-chance: 0.03 }
+
+ai:
+  aggression: AGGRESSIVE
+  movement: STRAFE
+  aggro-range: 50
+
+traits:
+  - { trait: hunter, drive: false, range: 50 }
+  - { trait: enrage, threshold: 0.3, strength: 1, speed: 1, message: "<yellow>The Thunder Lord crackles with fury!" }
+
+skills:
+  - skill: thunder
+    label: "Storm of Dread"
+    trigger: { types: [TICK], cooldown: 6s, chance: 0.7 }
+    params: { around: true, count: 5, around-radius: 7 }
+  - skill: thunder
+    label: "Smite"
+    trigger: { types: [TICK], cooldown: 5s, target: NEAREST_PLAYER, min-range: 4, max-range: 40, chance: 0.8 }
+    params: { damage: 4, explosion: true, explosion-radius: 3, explosion-damage: 4 }
+  - skill: strike
+    trigger: { types: [TICK], cooldown: 1s, max-range: 3.0, target: TARGET }
+    params: { damage: 9, knockback: 0.5 }
+
+drops:
+  xp: 120-220
+  items:
+    - { material: LIGHTNING_ROD, amount: 1-2, chance: 0.7 }
+    - { material: GOLD_BLOCK, amount: 1-2, chance: 0.5 }
+    - { material: DIAMOND, amount: 2-4, chance: 0.5 }
+
+presentation:
+  glow: true
+  glow-color: YELLOW
+  boss-bar: true
+  boss-bar-color: YELLOW
+  boss-bar-title: "<gradient:#fff176:#fffde7><bold>Thunder Lord</bold></gradient>"
+  ambient-particle: electric_spark
+
+scaling:
+  health-per-player: 0.16
+  damage-per-player: 0.05
+  max-players: 10

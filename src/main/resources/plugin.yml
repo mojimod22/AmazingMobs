@@ -1,0 +1,81 @@
+name: AmazingMobs
+version: '${project.version}'
+main: me.zygotecode.amazingmobs.AmazingMobs
+api-version: '1.21'
+authors: [BreakApp]
+description: Large-scale, fully configurable horde & custom-mob engine.
+website: https://breakapp.eu
+folia-supported: false
+
+commands:
+  amazingmobs:
+    description: Root command for AmazingMobs.
+    usage: /am help
+    aliases: [am, amobs]
+    permission: amazingmobs.use
+
+permissions:
+  amazingmobs.use:
+    description: Use the base command (help, list, info).
+    default: true
+  amazingmobs.admin:
+    description: Full access to every AmazingMobs feature.
+    default: op
+    children:
+      amazingmobs.use: true
+      amazingmobs.reload: true
+      amazingmobs.validate: true
+      amazingmobs.mob.create: true
+      amazingmobs.mob.edit: true
+      amazingmobs.mob.delete: true
+      amazingmobs.mob.save: true
+      amazingmobs.mob.export: true
+      amazingmobs.mob.spawn: true
+      amazingmobs.mob.test: true
+      amazingmobs.mob.give: true
+      amazingmobs.horde.start: true
+      amazingmobs.horde.stop: true
+      amazingmobs.horde.status: true
+      amazingmobs.debug: true
+  amazingmobs.reload:
+    description: Reload configuration and definitions.
+    default: op
+  amazingmobs.validate:
+    description: Dry-run validate all config files.
+    default: op
+  amazingmobs.mob.create:
+    description: Create custom mobs in-game.
+    default: op
+  amazingmobs.mob.edit:
+    description: Edit in-progress custom mob sessions.
+    default: op
+  amazingmobs.mob.delete:
+    description: Delete custom mob definitions.
+    default: op
+  amazingmobs.mob.save:
+    description: Save an in-game mob session to file.
+    default: op
+  amazingmobs.mob.export:
+    description: Export a mob definition to a portable file.
+    default: op
+  amazingmobs.mob.spawn:
+    description: Spawn custom mobs.
+    default: op
+  amazingmobs.mob.test:
+    description: Test a mob definition in a sandboxed way.
+    default: op
+  amazingmobs.mob.give:
+    description: Receive a mob's configured equipment items.
+    default: op
+  amazingmobs.horde.start:
+    description: Start hordes.
+    default: op
+  amazingmobs.horde.stop:
+    description: Stop running hordes.
+    default: op
+  amazingmobs.horde.status:
+    description: View horde status.
+    default: op
+  amazingmobs.debug:
+    description: Access debug / diagnostics tools.
+    default: op

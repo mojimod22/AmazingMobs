@@ -1,0 +1,81 @@
+# Archetype: FIRE SPECIALIST (melee) — immolating bruiser that slams burning ground.
+# Tactical role: melee zone-control with fire DoT. Immune to fire; pressure it from afar.
+id: magma_tyrant
+name: "<gradient:#bf360c:#ff8a65>Magma Tyrant</gradient>"
+lore:
+  - "<color:#ff5722>Born of the deep heat."
+type: MAGMA_CUBE
+tier: ELITE
+category: fire
+tags: [fire, melee, frontline]
+
+stats:
+  health: 120
+  damage: 9
+  speed: 0.26
+  armor: 8
+  knockback-resistance: 0.5
+  follow-range: 40
+  scale: 1.0
+  fire-immune: true
+  damage-multipliers:
+    fire: 0.0
+    projectile: 1.1
+
+ai:
+  aggression: AGGRESSIVE
+  movement: CHASE
+  target-priority: [NEAREST]
+  aggro-range: 40
+
+skills:
+  - skill: area_slam
+    label: "Magma Burst"
+    trigger:
+      types: [TICK]
+      cooldown: 6s
+      warmup: 1s
+      max-range: 4
+      radius: 5
+      chance: 0.8
+    params:
+      damage: 8
+      knockup: 0.5
+      particle: lava
+      sound: entity_magma_cube_squish
+  - skill: ignite
+    label: "Searing Touch"
+    trigger:
+      types: [ON_ATTACK]
+      cooldown: 2s
+      target: TARGET
+    params:
+      fire-ticks: 80
+  - skill: rage
+    label: "Overheat"
+    trigger:
+      types: [ON_LOW_HEALTH]
+      max-health-pct: 0.35
+      target: SELF
+      duration: 12s
+    params:
+      effects:
+        - { type: strength, amplifier: 1 }
+        - { type: speed, amplifier: 1 }
+      particle: flame
+
+drops:
+  xp: 30-55
+  items:
+    - { material: MAGMA_CREAM, amount: 2-4, chance: 0.7 }
+    - { material: MAGMA_BLOCK, amount: 1-3, chance: 0.4 }
+
+presentation:
+  glow: false
+  ambient-particle: flame
+  ambient-sound: block_lava_ambient
+
+scaling:
+  health-per-player: 0.12
+  damage-per-player: 0.05
+  max-players: 8

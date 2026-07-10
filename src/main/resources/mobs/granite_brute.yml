@@ -1,0 +1,68 @@
+# Archetype: BRUTE — charges in and leaps, huge burst, clumsy. Counter: dodge the telegraphed leap.
+id: granite_brute
+name: "<gradient:#8d6e63:#bcaaa4>Granite Brute</gradient>"
+lore:
+  - "<color:#a1887f>A wall of muscle with a grudge."
+type: RAVAGER
+tier: ELITE
+category: brute
+tags: [melee, frontline, heavy]
+
+stats:
+  health: 150
+  damage: 12
+  speed: 0.30
+  armor: 8
+  armor-toughness: 2
+  knockback-resistance: 0.85
+  attack-knockback: 1.0
+  follow-range: 42
+  damage-multipliers:
+    projectile: 1.15
+
+ai:
+  aggression: AGGRESSIVE
+  movement: CHASE
+  target-priority: [NEAREST]
+  aggro-range: 42
+
+skills:
+  - skill: jump_attack
+    label: "Crushing Leap"
+    trigger:
+      types: [TICK]
+      cooldown: 8s
+      warmup: 1s
+      min-range: 5
+      max-range: 22
+      radius: 4
+      chance: 0.8
+    params:
+      power: 1.0
+      upward: 0.75
+      delay: 14
+      damage: 10
+      knockup: 0.7
+      sound: entity_ravager_roar
+  - skill: dash
+    label: "Charge"
+    trigger:
+      types: [TICK]
+      cooldown: 5s
+      min-range: 4
+      max-range: 14
+      chance: 0.6
+    params:
+      power: 1.6
+      upward: 0.2
+
+drops:
+  xp: 30-55
+  items:
+    - { material: IRON_BLOCK, amount: 1, chance: 0.3 }
+    - { material: SADDLE, amount: 1, chance: 0.15 }
+
+scaling:
+  health-per-player: 0.13
+  damage-per-player: 0.05
+  max-players: 8

@@ -1,0 +1,32 @@
+# Fodder: basic horde body. Cheap, numerous, day-proof so night hordes survive sunrise.
+id: zombie_grunt
+name: "<gray>Grunt</gray>"
+type: ZOMBIE
+tier: COMMON
+category: fodder
+tags: [undead, melee, fodder]
+stats:
+  health: 28
+  damage: 5
+  speed: 0.25
+  armor: 3
+  follow-range: 35
+equipment:
+  main-hand: { material: STONE_SWORD, drop-chance: 0.04 }
+  helmet: { material: LEATHER_HELMET, drop-chance: 0.03 }
+  chestplate: { material: LEATHER_CHESTPLATE, drop-chance: 0.03 }
+ai:
+  aggression: AGGRESSIVE
+  movement: CHASE
+  burns-in-day: false
+traits:
+  - { trait: pack, radius: 10, per: 0.34, max-amplifier: 2 }
+drops:
+  xp: 3-7
+  items:
+    - { material: ROTTEN_FLESH, amount: 1-2, chance: 0.6 }
+    - { material: IRON_NUGGET, amount: 1-2, chance: 0.2 }
+scaling:
+  health-per-player: 0.08
+  damage-per-player: 0.03
+  max-players: 8

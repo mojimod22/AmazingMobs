@@ -1,0 +1,33 @@
+# Fodder: fast, low-HP swarm body. Summoned by the Broodmother; great for overwhelm waves.
+id: spiderling
+name: "<dark_gray>Spiderling</dark_gray>"
+type: CAVE_SPIDER
+tier: COMMON
+category: fodder
+tags: [arthropod, melee, swarm, fodder]
+stats:
+  health: 12
+  damage: 3
+  speed: 0.34
+  follow-range: 32
+ai:
+  aggression: AGGRESSIVE
+  movement: CHASE
+skills:
+  - skill: poison
+    label: "Venom Bite"
+    trigger:
+      types: [ON_ATTACK]
+      cooldown: 3s
+      target: TARGET
+      duration: 4s
+    params:
+      effects:
+        - { type: poison, amplifier: 0 }
+drops:
+  xp: 2-5
+  items:
+    - { material: STRING, amount: 1-2, chance: 0.5 }
+scaling:
+  health-per-player: 0.06
+  max-players: 8

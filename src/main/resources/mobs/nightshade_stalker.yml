@@ -1,0 +1,84 @@
+# Archetype: ASSASSIN — blinks to the weakest player, bursts them, then vanishes.
+# Tactical role: picks off low-health/isolated targets; low HP, high burst. Counter: stay grouped.
+id: nightshade_stalker
+name: "<gradient:#5e35b1:#b388ff>Nightshade Stalker</gradient>"
+lore:
+  - "<dark_purple>It hunts the wounded from the shadows."
+type: WITHER_SKELETON
+tier: ELITE
+category: assassin
+tags: [undead, melee, burst]
+
+stats:
+  health: 70
+  damage: 13
+  speed: 0.31
+  armor: 3
+  follow-range: 48
+  knockback-resistance: 0.2
+  crit-chance: 0.30
+  crit-multiplier: 2.0
+
+equipment:
+  main-hand:
+    material: NETHERITE_SWORD
+    name: "<dark_purple>Nightfang"
+    enchants: { sharpness: 4 }
+    unbreakable: true
+    glow: true
+    drop-chance: 0.04
+
+ai:
+  aggression: AGGRESSIVE
+  movement: STRAFE
+  target-priority: [LOWEST_HEALTH, NEAREST]
+  aggro-range: 48
+
+skills:
+  - skill: blink
+    label: "Shadowstep"
+    trigger:
+      types: [TICK]
+      cooldown: 6s
+      min-range: 6
+      max-range: 30
+      target: LOWEST_HEALTH_PLAYER
+      chance: 0.8
+    params:
+      mode: behind_target
+      distance: 2
+      sound: entity_enderman_teleport
+  - skill: vanish
+    label: "Fade"
+    trigger:
+      types: [ON_DAMAGED]
+      cooldown: 14s
+      chance: 0.3
+      duration: 3s
+    params:
+      particle: large_smoke
+  - skill: poison
+    label: "Envenom"
+    trigger:
+      types: [ON_ATTACK]
+      cooldown: 2s
+      target: TARGET
+      duration: 5s
+    params:
+      effects:
+        - { type: poison, amplifier: 1 }
+
+drops:
+  xp: 25-50
+  items:
+    - { material: NETHERITE_SCRAP, amount: 1, chance: 0.12 }
+    - { material: ENDER_PEARL, amount: 1-2, chance: 0.4 }
+
+presentation:
+  glow: false
+  ambient-particle: smoke
+
+scaling:
+  health-per-player: 0.06
+  damage-per-player: 0.07
+  max-players: 8

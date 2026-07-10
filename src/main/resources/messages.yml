@@ -1,0 +1,8 @@
+# ============================================================================
+#  AmazingMobs — messages
+#  Command feedback uses MiniMessage (https://docs.advntr.dev/minimessage).
+#  Only the command prefix is configured here; per-event text (horde titles,
+#  phase shouts, rewards) lives in each mob/horde definition file.
+# ============================================================================
+
+prefix: "<gradient:#ff5e62:#ff9966><bold>AmazingMobs</bold></gradient> <dark_gray>»</dark_gray> "

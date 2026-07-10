@@ -1,0 +1,57 @@
+# MID · COMMAND-LED · a disciplined raiding party under the Iron Warlord.
+id: bandit_raid
+name: "<color:#cfd8dc>Bandit Raid</color>"
+description: "An organised warband marches on the settlement."
+difficulty: 1.25
+duration: 8m
+cooldown: 20m
+
+area:
+  shape: CYLINDER
+  radius: 70
+  height: 30
+  dynamic: true
+
+spawn:
+  max-per-tick: 7
+  max-mobs: 60
+  min-player-distance: 12
+  attempts: 26
+
+activation:
+  min-players: 1
+  max-players: 10
+
+start-title: "<color:#cfd8dc><bold>Bandit Raid</bold></color>"
+start-subtitle: "<gray>War horns echo over the hills</gray>"
+sound: event_raid_horn
+
+waves:
+  - label: "Raiders"
+    start-delay: 3s
+    mobs:
+      - { mob: husk_marauder, count: 6-8, per-player: 2 }
+      - { mob: skeletal_grunt, count: 3-4, per-player: 1 }
+  - label: "Vanguard"
+    start-delay: 5s
+    mobs:
+      - { mob: husk_marauder, count: 5-7, per-player: 2 }
+      - { mob: aegis_sentinel, count: 1, per-player: 1, role: elite }
+  - label: "The Warlord"
+    start-delay: 5s
+    clear-threshold: 1.0
+    title: "<white>The Iron Warlord arrives</white>"
+    sound: entity_ravager_roar
+    mobs:
+      - { mob: iron_warlord, count: 1, role: boss, boss: true }
+
+rewards:
+  xp: 150-280
+  message: "<green>The warband is broken and scattered."
+  items:
+    - { material: EMERALD, amount: 3-6, chance: 0.8 }
+    - { material: IRON_BLOCK, amount: 1-2, chance: 0.5 }
+    - { material: ENCHANTED_GOLDEN_APPLE, amount: 1, chance: 0.1 }
+
+end-message: "<green><bold>The Bandit Raid is crushed!</bold>"
+fail-message: "<red>The warband sacks the area..."

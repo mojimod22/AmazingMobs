@@ -1,0 +1,43 @@
+# SWARM SPRINTER · shrinks tiny on spawn and sprints — a fast, hard-to-hit swarm body.
+# Showcases the 'scale' skill (shrink) + the 'swift' trait (sustained speed).
+id: swarm_sprinter
+name: "<color:#b39ddb>Sprinter</color>"
+lore: ["<gray>Blink and it's on you."]
+type: ZOMBIE
+tier: COMMON
+category: swarm
+tags: [swarm, fast, melee]
+
+stats:
+  health: 16
+  damage: 4
+  speed: 0.32
+  armor: 1
+  follow-range: 40
+
+ai:
+  aggression: AGGRESSIVE
+  movement: CHASE
+  aggro-range: 40
+  burns-in-day: false
+
+traits:
+  - { trait: swift }
+  - { trait: hunter, drive: true, drive-power: 0.3, reach: 2.2 }
+  - { trait: pack, radius: 8, per: 0.34, max-amplifier: 2 }
+
+skills:
+  - skill: scale
+    label: "Shrink"
+    trigger: { types: [ON_SPAWN], duration: 0 }
+    params: { size: 0.6, speed: 1 }
+  - skill: strike
+    trigger: { types: [TICK], cooldown: 1s, max-range: 2.2, target: TARGET }
+    params: { damage: 4, knockback: 0.2 }
+
+drops:
+  xp: 2-5
+  items:
+    - { material: ROTTEN_FLESH, amount: 1, chance: 0.4 }
+
+scaling: { health-per-player: 0.06, max-players: 8 }

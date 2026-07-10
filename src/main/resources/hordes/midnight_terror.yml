@@ -1,0 +1,62 @@
+# NIGHTMARE EVENT · night-locked, brutal difficulty, the Dread Overlord as finale.
+id: midnight_terror
+name: "<dark_red><bold>Midnight Terror</bold></dark_red>"
+description: "The worst the horde has to offer, under a starless sky."
+difficulty: 1.9
+duration: 13m
+cooldown: 45m
+
+area:
+  shape: SPHERE
+  radius: 70
+  dynamic: true
+
+spawn:
+  max-per-tick: 9
+  max-mobs: 90
+  min-player-distance: 12
+  attempts: 28
+
+activation:
+  min-players: 3
+  max-players: 12
+  time-min: 14000
+  time-max: 22000
+
+start-title: "<dark_red><bold>MIDNIGHT TERROR</bold></dark_red>"
+start-subtitle: "<red>Pray for dawn</red>"
+sound: entity_wither_spawn
+
+waves:
+  - label: "The Coming Dark"
+    start-delay: 4s
+    mobs:
+      - { mob: zombie_grunt, count: 10-14, per-player: 3 }
+      - { mob: nightshade_stalker, count: 2-3, per-player: 1, role: elite }
+  - label: "Terrors"
+    start-delay: 6s
+    mobs:
+      - { mob: bonecrusher_juggernaut, count: 1-2, per-player: 1, role: elite }
+      - { mob: void_phantom, count: 1-2, per-player: 1, role: elite }
+      - { mob: bonelord_necromancer, count: 1, per-player: 1, role: elite }
+  - label: "The Overlord Wakes"
+    start-delay: 6s
+    clear-threshold: 1.0
+    title: "<dark_red><bold>The Dread Overlord wakes</bold></dark_red>"
+    sound: entity_wither_spawn
+    mobs:
+      - { mob: dread_overlord, count: 1, role: boss, boss: true }
+      - { mob: nightshade_stalker, count: 2-3, per-player: 1, role: elite }
+
+rewards:
+  xp: 500-900
+  message: "<green>You survived the Midnight Terror. Few do."
+  commands:
+    - "title %player% subtitle {\"text\":\"Survivor of the Midnight Terror\",\"color\":\"dark_red\"}"
+  items:
+    - { material: NETHERITE_INGOT, amount: 1-3, chance: 0.7 }
+    - { material: ENCHANTED_GOLDEN_APPLE, amount: 2-3, chance: 0.6 }
+    - { material: NETHER_STAR, amount: 1, chance: 0.2 }
+
+end-message: "<green><bold>Dawn breaks. The Terror is over.</bold>"
+fail-message: "<red>The Terror consumes all. The night never ends."

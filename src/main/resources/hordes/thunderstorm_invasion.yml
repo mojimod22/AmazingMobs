@@ -1,0 +1,57 @@
+# THUNDERSTORM · lightning rains on anyone who clumps up. Spread out and move.
+id: thunderstorm_invasion
+name: "<yellow>Thunderstorm Invasion</yellow>"
+description: "The storm is not weather. It is an army."
+difficulty: 1.35
+duration: 8m
+cooldown: 22m
+
+area:
+  shape: CYLINDER
+  radius: 80
+  height: 40
+  dynamic: true
+
+spawn:
+  max-per-tick: 7
+  max-mobs: 55
+  min-player-distance: 14
+  attempts: 28
+
+activation:
+  min-players: 1
+  max-players: 8
+
+start-title: "<yellow><bold>Thunderstorm Invasion</bold></yellow>"
+start-subtitle: "<gray>The sky cracks open</gray>"
+sound: entity_lightning_bolt_thunder
+
+waves:
+  - label: "Static"
+    start-delay: 3s
+    mobs:
+      - { mob: storm_herald, count: 2-3, per-player: 1 }
+      - { mob: skeletal_grunt, count: 4-6, per-player: 2 }
+  - label: "Squall"
+    start-delay: 5s
+    mobs:
+      - { mob: storm_herald, count: 2-3, per-player: 1 }
+      - { mob: voltaic_brute, count: 1-2, per-player: 1, role: elite }
+      - { mob: gale_harpy, count: 2-3, per-player: 1 }
+  - label: "Eye of the Storm"
+    start-delay: 5s
+    clear-threshold: 1.0
+    title: "<yellow>The Thunder Lord commands the sky</yellow>"
+    mobs:
+      - { mob: thunder_lord, count: 1, role: boss, boss: true }
+      - { mob: storm_bat, count: 3-4, per-player: 1 }
+
+rewards:
+  xp: 170-310
+  message: "<green>The storm rolls on, beaten back."
+  items:
+    - { material: LIGHTNING_ROD, amount: 1-2, chance: 0.6 }
+    - { material: GOLD_INGOT, amount: 3-7, chance: 0.6 }
+
+end-message: "<green><bold>The Thunderstorm Invasion disperses!</bold>"
+fail-message: "<red>The storm swallows the field..."

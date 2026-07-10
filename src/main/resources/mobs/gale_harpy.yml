@@ -1,0 +1,76 @@
+# Archetype: AERIAL HARASSER — dives, gusts players around, hard to pin down.
+# Tactical role: disrupts formations from the air; low HP, punished by bows.
+id: gale_harpy
+name: "<gradient:#80deea:#e1f5fe>Gale Harpy</gradient>"
+lore:
+  - "<aqua>A shrieking thing that rides the wind."
+type: PHANTOM
+tier: RARE
+category: aerial
+tags: [flying, harasser]
+
+stats:
+  health: 45
+  damage: 6
+  speed: 0.7          # phantom flight speed attribute
+  follow-range: 48
+  fall-immune: true
+  knockback-resistance: 0.1
+  damage-multipliers:
+    projectile: 1.4
+
+ai:
+  aggression: AGGRESSIVE
+  movement: AMBUSH
+  target-priority: [RANDOM, NEAREST]
+  aggro-range: 48
+
+skills:
+  - skill: dash
+    label: "Dive"
+    trigger:
+      types: [TICK]
+      cooldown: 4s
+      min-range: 5
+      max-range: 30
+      chance: 0.8
+    params:
+      power: 1.7
+      upward: -0.2
+      sound: entity_phantom_swoop
+  - skill: repel
+    label: "Downdraft"
+    trigger:
+      types: [TICK]
+      cooldown: 8s
+      target: ALL_PLAYERS_IN_RADIUS
+      radius: 5
+      chance: 0.5
+    params:
+      power: 0.9
+      upward: 0.6
+      sound: entity_phantom_flap
+  - skill: flight
+    label: "Updraft"
+    trigger:
+      types: [ON_DAMAGED]
+      cooldown: 10s
+      chance: 0.3
+      duration: 3s
+    params:
+      amplifier: 3
+      approach: 0.0
+
+drops:
+  xp: 18-34
+  items:
+    - { material: PHANTOM_MEMBRANE, amount: 1-2, chance: 0.7 }
+
+presentation:
+  glow: false
+  ambient-particle: cloud
+
+scaling:
+  health-per-player: 0.08
+  damage-per-player: 0.05
+  max-players: 8

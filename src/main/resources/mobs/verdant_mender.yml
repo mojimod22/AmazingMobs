@@ -1,0 +1,83 @@
+# Archetype: SUPPORT HEALER — heals & buffs nearby allies; a priority kill target.
+# Tactical role: force-multiplier for a horde. Synergy: makes tanks/brutes far harder.
+id: verdant_mender
+name: "<gradient:#2e7d32:#81c784>Verdant Mender</gradient>"
+lore:
+  - "<green>Mends its kin faster than you can cut them down."
+type: WITCH
+tier: RARE
+category: support
+tags: [support, healer, backline]
+
+stats:
+  health: 80
+  damage: 2
+  speed: 0.26
+  armor: 2
+  follow-range: 40
+  regen-per-second: 1.0
+  damage-multipliers:
+    projectile: 1.2
+
+ai:
+  aggression: DEFENSIVE
+  movement: KITE
+  target-priority: [NEAREST]
+  aggro-range: 30
+  kite-distance: 14
+  retreat-health-pct: 0.5
+
+skills:
+  - skill: heal
+    label: "Renewing Bloom"
+    trigger:
+      types: [TICK]
+      cooldown: 4s
+      target: ALL_IN_RADIUS
+      radius: 12
+      chance: 1.0
+    params:
+      amount: 6
+      percent: 0.05
+      particle: heart
+      sound: block_amethyst_block_chime
+  - skill: regenerate
+    label: "Verdant Gift"
+    trigger:
+      types: [TICK]
+      cooldown: 10s
+      target: ALL_IN_RADIUS
+      radius: 12
+      duration: 6s
+    params:
+      effects:
+        - { type: regeneration, amplifier: 1 }
+  - skill: poison
+    label: "Bitter Brew"
+    trigger:
+      types: [TICK]
+      cooldown: 5s
+      target: NEAREST_PLAYER
+      max-range: 16
+      duration: 5s
+      chance: 0.6
+    params:
+      effects:
+        - { type: poison, amplifier: 0 }
+        - { type: weakness, amplifier: 0 }
+
+drops:
+  xp: 20-40
+  items:
+    - { material: GLOWSTONE_DUST, amount: 2-4, chance: 0.6 }
+    - { material: GOLDEN_APPLE, amount: 1, chance: 0.15 }
+
+presentation:
+  glow: true
+  glow-color: GREEN
+  ambient-particle: composter
+
+scaling:
+  health-per-player: 0.1
+  damage-per-player: 0.0
+  max-players: 8

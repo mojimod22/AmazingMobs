@@ -1,0 +1,32 @@
+# BAT ECLIPSE · the screamer. Orbits its prey and unleashes disorienting shrieks.
+id: echo_bat
+name: "<dark_gray>Echo Bat</dark_gray>"
+lore: ["<gray>Its screech rattles your skull."]
+type: BAT
+tier: UNCOMMON
+category: bat
+tags: [bat, flying, control, swarm]
+stats:
+  health: 16
+  damage: 3
+  speed: 0.6
+  follow-range: 40
+  fall-immune: true
+ai:
+  aggression: AGGRESSIVE
+  movement: AMBUSH
+  aggro-range: 40
+  chase-speed: 2.0
+traits:
+  - { trait: hunter, drive: true, drive-power: 0.22, reach: 2.5 }
+skills:
+  - skill: strike
+    trigger: { types: [TICK], cooldown: 1s, max-range: 2.5, target: TARGET }
+    params: { damage: 3 }
+  - skill: fear
+    label: "Sonic Shriek"
+    trigger: { types: [TICK], cooldown: 7s, target: ALL_PLAYERS_IN_RADIUS, radius: 6, duration: 4s, chance: 0.6 }
+    params: { sound: entity_bat_takeoff }
+drops:
+  xp: 3-6
+scaling: { health-per-player: 0.06, max-players: 8 }

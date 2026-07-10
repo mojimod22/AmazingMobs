@@ -1,0 +1,32 @@
+# CHICKEN APOCALYPSE · the explosive one, as a standalone unit (so hordes can field it directly).
+# Sprints in and detonates via the 'exploder' trait. Block-safe explosion by default.
+id: kamikaze_chicken
+name: "<gold>Kamikaze Chicken</gold>"
+lore: ["<gray>Cluck. Tick. Tick. Tick."]
+type: CHICKEN
+tier: UNCOMMON
+category: chicken
+tags: [chicken, swarm, exploder]
+stats:
+  health: 8
+  damage: 2
+  speed: 0.48
+  follow-range: 34
+ai:
+  aggression: AGGRESSIVE
+  movement: CHASE
+  aggro-range: 34
+traits:
+  - { trait: hunter, drive: true, drive-power: 0.4, reach: 2.0 }
+  - { trait: exploder, radius: 3.5, damage: 7, knockback: 0.3, fire: false }
+skills:
+  - skill: strike
+    trigger: { types: [TICK], cooldown: 1s, max-range: 2.0, target: TARGET }
+    params: { damage: 2 }
+presentation:
+  glow: true
+  glow-color: YELLOW
+  ambient-particle: flame
+drops:
+  xp: 3-6
+scaling: { health-per-player: 0.05, max-players: 8 }

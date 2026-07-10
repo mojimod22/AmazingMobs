@@ -1,0 +1,182 @@
+# Archetype: MINIBOSS-TIER — a multi-phase finale boss. Showcases phases, phase-gated skills,
+# a boss bar, summons, ranged + AoE, fear and an enrage. Built to anchor endgame hordes.
+# Tactical role: the wall a whole raid throws itself at. Phases escalate as it bloodies.
+id: dread_overlord
+name: "<gradient:#b71c1c:#ff8a80><bold>The Dread Overlord</bold></gradient>"
+lore:
+  - "<dark_red>It has ended a hundred sieges. Be the exception."
+type: WITHER_SKELETON
+tier: BOSS
+category: boss
+tags: [undead, boss, finale]
+
+stats:
+  health: 400
+  damage: 14
+  speed: 0.27
+  armor: 12
+  armor-toughness: 4
+  knockback-resistance: 0.85
+  follow-range: 60
+  scale: 1.4
+  regen-per-second: 0.5
+  crit-chance: 0.15
+  crit-multiplier: 1.8
+  damage-multipliers:
+    fire: 0.5
+    projectile: 1.0
+
+equipment:
+  main-hand:
+    material: NETHERITE_SWORD
+    name: "<dark_red>Dreadfang"
+    enchants: { sharpness: 4, fire_aspect: 1 }
+    unbreakable: true
+    glow: true
+    drop-chance: 0.1
+  helmet:
+    material: NETHERITE_HELMET
+    name: "<dark_red>Crown of Dread"
+    enchants: { protection: 3 }
+    drop-chance: 0.05
+
+ai:
+  aggression: AGGRESSIVE
+  movement: CHASE
+  target-priority: [NEAREST]
+  aggro-range: 60
+
+skills:
+  - skill: wither_skull
+    label: "Skull Throw"
+    trigger:
+      types: [TICK]
+      cooldown: 3s
+      min-range: 5
+      max-range: 50
+      chance: 0.85
+    params:
+      type: wither_skull
+      count: 1
+      speed: 1.3
+      sound: entity_wither_shoot
+  - skill: area_slam
+    label: "Dread Slam"
+    trigger:
+      types: [TICK]
+      cooldown: 7s
+      warmup: 1s
+      max-range: 5
+      radius: 6
+      chance: 0.7
+    params:
+      damage: 10
+      knockup: 0.8
+      knockback: 0.9
+      sound: entity_wither_break_block
+      particle: smoke
+  - skill: summon
+    label: "Call the Damned"
+    trigger:
+      types: [TICK]
+      cooldown: 12s
+      chance: 0.8
+      phases: [wrath, fury, cataclysm]
+    params:
+      mob: skeletal_grunt
+      count: 3-4
+      spread: 5
+  - skill: projectile_burst
+    label: "Skull Storm"
+    trigger:
+      types: [TICK]
+      cooldown: 9s
+      max-range: 50
+      phases: [fury, cataclysm]
+    params:
+      type: wither_skull
+      count: 5
+      spread: 0.25
+      speed: 1.2
+  - skill: summon
+    label: "Honour Guard"
+    trigger:
+      types: [TICK]
+      cooldown: 20s
+      chance: 0.6
+      phases: [cataclysm]
+    params:
+      mob: nightshade_stalker
+      count: 1-2
+      spread: 4
+  - skill: fear
+    label: "Aura of Dread"
+    trigger:
+      types: [ON_LOW_HEALTH]
+      max-health-pct: 0.4
+      target: ALL_PLAYERS_IN_RADIUS
+      radius: 16
+      duration: 5s
+  - skill: rage
+    label: "Final Stand"
+    trigger:
+      types: [ON_LOW_HEALTH]
+      max-health-pct: 0.15
+      target: SELF
+      duration: 30s
+    params:
+      effects:
+        - { type: strength, amplifier: 1 }
+        - { type: speed, amplifier: 1 }
+        - { type: resistance, amplifier: 0 }
+      particle: flame
+
+phases:
+  - id: wrath
+    threshold: 0.66
+    damage-mult: 1.2
+    speed-mult: 1.1
+    message: "<dark_red>⚔ The Dread Overlord seethes with wrath!"
+    sound: entity_wither_spawn
+    particle: large_smoke
+  - id: fury
+    threshold: 0.4
+    damage-mult: 1.4
+    defense-mult: 0.9
+    message: "<red>⚔ The Dread Overlord unleashes its fury!"
+    sound: entity_wither_spawn
+    particle: soul_fire_flame
+  - id: cataclysm
+    threshold: 0.15
+    damage-mult: 1.5
+    speed-mult: 1.3
+    message: "<dark_red><bold>☠ CATACLYSM — the Overlord knows no restraint!"
+    sound: entity_wither_spawn
+    particle: flame
+
+drops:
+  clear-vanilla: true
+  xp: 200-400
+  items:
+    - { material: NETHERITE_INGOT, amount: 1-2, chance: 0.6 }
+    - { material: ENCHANTED_GOLDEN_APPLE, amount: 1-2, chance: 0.5 }
+    - material: WITHER_SKELETON_SKULL
+      amount: 1
+      chance: 1.0
+      name: "<dark_red>Trophy of the Dread Overlord"
+      lore: ["<gray>Proof that the unkillable, fell."]
+      glow: true
+
+presentation:
+  glow: true
+  glow-color: RED
+  boss-bar: true
+  boss-bar-color: PURPLE
+  boss-bar-title: "<gradient:#b71c1c:#ff8a80><bold>The Dread Overlord</bold></gradient>"
+  ambient-particle: large_smoke
+  ambient-sound: entity_wither_ambient
+
+scaling:
+  health-per-player: 0.22
+  damage-per-player: 0.05
+  max-players: 10

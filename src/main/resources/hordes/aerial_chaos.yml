@@ -1,0 +1,53 @@
+# AERIAL CHAOS · skies full of diving harpies. Bring bows; melee struggles here.
+id: aerial_chaos
+name: "<color:#80deea>Aerial Chaos</color>"
+description: "Death comes from above, again and again."
+difficulty: 1.3
+duration: 7m
+cooldown: 20m
+
+area:
+  shape: SPHERE
+  radius: 70
+  dynamic: true
+
+spawn:
+  max-per-tick: 8
+  max-mobs: 50
+  min-player-distance: 16
+  attempts: 30
+
+activation:
+  min-players: 1
+  max-players: 8
+
+start-title: "<color:#80deea><bold>Aerial Chaos</bold></color>"
+start-subtitle: "<gray>Wings blot out the light</gray>"
+sound: entity_phantom_ambient
+
+waves:
+  - label: "First Flight"
+    start-delay: 3s
+    mobs:
+      - { mob: gale_harpy, count: 4-6, per-player: 2 }
+  - label: "Dive Bombers"
+    start-delay: 5s
+    mobs:
+      - { mob: gale_harpy, count: 5-7, per-player: 2 }
+      - { mob: cinder_lobber, count: 1-2, per-player: 1 }
+  - label: "The Flock"
+    start-delay: 5s
+    clear-threshold: 0.9
+    title: "<color:#80deea>The whole flock descends</color>"
+    mobs:
+      - { mob: gale_harpy, count: 8-10, per-player: 3, role: elite }
+
+rewards:
+  xp: 150-280
+  message: "<green>The skies clear at last."
+  items:
+    - { material: PHANTOM_MEMBRANE, amount: 3-6, chance: 0.8 }
+    - { material: ARROW, amount: 16-32, chance: 0.7 }
+
+end-message: "<green><bold>Aerial Chaos grounded!</bold>"
+fail-message: "<red>They pick you apart from the air..."

@@ -1,0 +1,48 @@
+# FALSE PEACE · looks like a harmless villager (name hidden, no glow) until it strikes or is hit —
+# then it reveals and ambushes. Showcases the 'mimic' trait for bait-and-switch invasions.
+id: illusion_villager
+name: "<dark_red>Disguised Marauder</dark_red>"
+lore:
+  - "<gray>Not every villager wants to trade."
+type: VILLAGER
+tier: RARE
+category: villager
+tags: [villager, ambush, stealth]
+
+stats:
+  health: 45
+  damage: 9
+  speed: 0.45
+  armor: 2
+  follow-range: 40
+  crit-chance: 0.25
+  crit-multiplier: 1.8
+
+ai:
+  aggression: AGGRESSIVE
+  movement: AMBUSH
+  aggro-range: 36
+
+traits:
+  - { trait: mimic, reveal-message: "<dark_red>The 'villager' draws a blade!" }
+  - { trait: hunter, drive: true, drive-power: 0.3, reach: 2.4 }
+
+skills:
+  - skill: strike
+    trigger: { types: [TICK], cooldown: 1s, max-range: 2.6, target: TARGET }
+    params: { damage: 9, knockback: 0.3 }
+
+drops:
+  xp: 15-30
+  items:
+    - { material: EMERALD, amount: 1-2, chance: 0.5 }
+    - { material: IRON_INGOT, amount: 1-2, chance: 0.4 }
+
+presentation:
+  name-visible: true
+  ambient-sound: ""
+
+scaling:
+  health-per-player: 0.08
+  damage-per-player: 0.06
+  max-players: 8

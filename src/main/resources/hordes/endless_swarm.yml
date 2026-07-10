@@ -1,0 +1,60 @@
+# SWARM-HEAVY · drown in bodies. High caps, fast spawns, a Broodmother to keep them coming.
+id: endless_swarm
+name: "<dark_red>Endless Swarm</dark_red>"
+description: "Numbers without end. Crowd control is survival."
+difficulty: 1.5
+duration: 10m
+cooldown: 25m
+
+area:
+  shape: CYLINDER
+  radius: 55
+  height: 25
+  dynamic: true
+
+spawn:
+  max-per-tick: 12
+  max-mobs: 110
+  min-player-distance: 8
+  attempts: 22
+
+activation:
+  min-players: 2
+  max-players: 12
+
+start-title: "<dark_red><bold>Endless Swarm</bold></dark_red>"
+start-subtitle: "<gray>They keep coming</gray>"
+sound: entity_zombie_ambient
+
+waves:
+  - label: "The Tide"
+    start-delay: 3s
+    clear-threshold: 0.8
+    mobs:
+      - { mob: zombie_grunt, count: 14-18, per-player: 5 }
+      - { mob: spiderling, count: 10-14, per-player: 4 }
+  - label: "The Flood"
+    start-delay: 4s
+    clear-threshold: 0.8
+    mobs:
+      - { mob: zombie_grunt, count: 12-16, per-player: 4 }
+      - { mob: spiderling, count: 12-16, per-player: 4 }
+      - { mob: husk_marauder, count: 4-6, per-player: 2 }
+  - label: "The Broodmother's Tide"
+    start-delay: 4s
+    clear-threshold: 1.0
+    title: "<dark_red>The Broodmother feeds the swarm</dark_red>"
+    mobs:
+      - { mob: broodmother, count: 1, role: boss, boss: true }
+      - { mob: spiderling, count: 10-12, per-player: 3 }
+
+rewards:
+  xp: 260-470
+  message: "<green>The swarm is finally stemmed."
+  items:
+    - { material: ROTTEN_FLESH, amount: 16-32, chance: 1.0 }
+    - { material: EMERALD, amount: 2-5, chance: 0.6 }
+    - { material: DIAMOND, amount: 1-3, chance: 0.5 }
+
+end-message: "<green><bold>The Endless Swarm ends!</bold>"
+fail-message: "<red>Buried under bodies..."

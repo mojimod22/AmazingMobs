@@ -1,0 +1,66 @@
+# Archetype: NECROMANCER-LIKE (melee) — withers nearby foes and raises bodies as it dies.
+# Tactical role: attrition + last-gasp reinforcements. Differs from Bonelord (pure backline caster).
+id: grave_warden
+name: "<gradient:#37474f:#78909c>Grave Warden</gradient>"
+lore:
+  - "<gray>The dead answer when it falls."
+type: SKELETON
+tier: ELITE
+category: necromancer
+tags: [undead, melee, summoner]
+
+stats:
+  health: 95
+  damage: 7
+  speed: 0.26
+  armor: 6
+  follow-range: 40
+  burns-in-day: false
+
+equipment:
+  main-hand: { material: IRON_SWORD, enchants: { sharpness: 2 }, drop-chance: 0.05 }
+  helmet: { material: IRON_HELMET, drop-chance: 0.03 }
+
+ai:
+  aggression: AGGRESSIVE
+  movement: CHASE
+  target-priority: [NEAREST]
+  aggro-range: 40
+
+skills:
+  - skill: wither
+    label: "Grave Aura"
+    trigger:
+      types: [TICK]
+      cooldown: 4s
+      target: ALL_PLAYERS_IN_RADIUS
+      radius: 6
+      duration: 4s
+      chance: 0.7
+    params:
+      effects:
+        - { type: wither, amplifier: 0 }
+      particle: smoke
+  - skill: summon
+    label: "Last Rites"
+    trigger:
+      types: [ON_DEATH]
+    params:
+      mob: skeletal_grunt
+      count: 2-3
+      spread: 2
+      sound: entity_wither_death
+
+drops:
+  xp: 28-50
+  items:
+    - { material: BONE, amount: 2-5, chance: 0.7 }
+    - { material: WITHER_SKELETON_SKULL, amount: 1, chance: 0.05 }
+
+presentation:
+  ambient-particle: smoke
+
+scaling:
+  health-per-player: 0.11
+  damage-per-player: 0.04
+  max-players: 8

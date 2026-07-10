@@ -1,0 +1,57 @@
+# FROZEN MEGA-EVENT · relentless cold and crowd control, capped by an unstoppable frost colossus.
+id: the_deep_freeze
+name: "<aqua><bold>The Deep Freeze</bold></aqua>"
+description: "A glacial host that locks you down and grinds you to nothing."
+difficulty: 1.75
+duration: 13m
+cooldown: 40m
+
+area:
+  shape: SPHERE
+  radius: 75
+  dynamic: true
+
+spawn:
+  max-per-tick: 8
+  max-mobs: 75
+  min-player-distance: 12
+  attempts: 28
+
+activation:
+  min-players: 2
+  max-players: 12
+
+start-title: "<aqua><bold>The Deep Freeze</bold></aqua>"
+start-subtitle: "<gray>The world turns to ice</gray>"
+sound: block_glass_break
+
+waves:
+  - label: "Cold Front"
+    start-delay: 4s
+    mobs:
+      - { mob: permafrost_revenant, count: 4-6, per-player: 2 }
+      - { mob: skeletal_grunt, count: 4-6, per-player: 2 }
+  - label: "Bitter Frost"
+    start-delay: 5s
+    mobs:
+      - { mob: frost_weaver, count: 2-3, per-player: 1, role: elite }
+      - { mob: permafrost_revenant, count: 4-6, per-player: 2 }
+  - label: "Absolute Zero"
+    start-delay: 6s
+    clear-threshold: 1.0
+    title: "<aqua><bold>The Frost Colossus advances</bold></aqua>"
+    sound: entity_iron_golem_attack
+    mobs:
+      - { mob: unbreakable_colossus, count: 1, role: boss, boss: true }
+      - { mob: frost_weaver, count: 1-2, per-player: 1, role: elite }
+
+rewards:
+  xp: 360-640
+  message: "<green>The thaw begins. You broke the freeze."
+  items:
+    - { material: BLUE_ICE, amount: 4-8, chance: 0.8 }
+    - { material: DIAMOND, amount: 3-6, chance: 0.7 }
+    - { material: NETHERITE_INGOT, amount: 1, chance: 0.25 }
+
+end-message: "<green><bold>The Deep Freeze shatters!</bold>"
+fail-message: "<red>Frozen solid, every one of you..."

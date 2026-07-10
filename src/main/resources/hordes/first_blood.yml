@@ -1,0 +1,57 @@
+# EARLY-GAME · gentle two-wave warm-up. Teaches the horde flow without overwhelming new players.
+id: first_blood
+name: "<gray>First Blood</gray>"
+description: "A small probing attack — the horde tests your defences."
+difficulty: 0.85
+duration: 5m
+cooldown: 10m
+
+area:
+  shape: CYLINDER
+  radius: 60
+  height: 30
+  dynamic: true
+
+spawn:
+  max-per-tick: 6
+  max-mobs: 40
+  min-player-distance: 10
+  attempts: 24
+
+activation:
+  min-players: 1
+  max-players: 8
+
+start-title: "<gray><bold>First Blood</bold></gray>"
+start-subtitle: "<dark_gray>The horde gathers at the edges...</dark_gray>"
+sound: entity_zombie_ambient
+
+waves:
+  - label: "Scouts"
+    start-delay: 3s
+    clear-threshold: 0.9
+    title: "<gray>Wave 1</gray>"
+    subtitle: "<dark_gray>Scouts approach</dark_gray>"
+    mobs:
+      - { mob: zombie_grunt, count: 6-8, per-player: 2 }
+      - { mob: skeletal_grunt, count: 2-3, per-player: 1 }
+  - label: "The Push"
+    start-delay: 5s
+    clear-threshold: 1.0
+    title: "<gray>Wave 2</gray>"
+    subtitle: "<dark_gray>They commit</dark_gray>"
+    mobs:
+      - { mob: zombie_grunt, count: 8-10, per-player: 2 }
+      - { mob: swarm_sprinter, count: 3-5, per-player: 2 }
+      - { mob: husk_marauder, count: 1-2, per-player: 1 }
+      - { mob: umbral_ambusher, count: 1, per-player: 1, role: elite }
+
+rewards:
+  xp: 40-80
+  message: "<green>You held the line. The scouts retreat."
+  items:
+    - { material: IRON_INGOT, amount: 2-4, chance: 0.8 }
+    - { material: COOKED_BEEF, amount: 4-8, chance: 0.6 }
+
+end-message: "<green><bold>First Blood repelled!</bold>"
+fail-message: "<red>The scouts overran the area..."

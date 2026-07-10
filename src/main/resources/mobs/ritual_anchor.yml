@@ -1,0 +1,40 @@
+# BATTLEFIELD OBJECTIVE · a stationary anchor that commands (buffs) the whole horde and fires shulker
+# bullets. Keeps its vanilla shulker attack (goals not cleared). Destroy it to weaken the horde.
+id: ritual_anchor
+name: "<dark_purple><bold>Ritual Anchor</bold></dark_purple>"
+lore: ["<gray>While it stands, they grow stronger."]
+type: SHULKER
+tier: MINIBOSS
+category: objective
+tags: [objective, structure, support]
+
+stats:
+  health: 150
+  damage: 4
+  armor: 8
+  knockback-immune: true
+  follow-range: 24
+
+ai:
+  aggression: AGGRESSIVE
+  movement: STATIONARY
+
+traits:
+  - { trait: commander, radius: 18, cooldown: 8s }   # strength + speed + resistance to the horde
+
+drops:
+  xp: 60-100
+  items:
+    - { material: EMERALD, amount: 2-5, chance: 0.7 }
+    - { material: SHULKER_SHELL, amount: 1-2, chance: 0.5 }
+
+presentation:
+  glow: true
+  glow-color: DARK_PURPLE
+  boss-bar: true
+  boss-bar-color: PURPLE
+  boss-bar-title: "<dark_purple>Ritual Anchor"
+
+scaling:
+  health-per-player: 0.18
+  max-players: 10

@@ -1,0 +1,32 @@
+# STACK LAYER · the top of a Living Totem — the "chief" that commands the column and spits wither skulls.
+id: totem_crown
+name: "<dark_purple>Totem Crown</dark_purple>"
+lore: ["<gray>It speaks for the totem."]
+type: WITHER_SKELETON
+tier: ELITE
+category: totem
+tags: [undead, caster, totem, commander]
+stats:
+  health: 70
+  damage: 4
+  speed: 0
+  armor: 6
+  follow-range: 44
+  knockback-immune: true
+  burns-in-day: false
+ai:
+  aggression: AGGRESSIVE
+  movement: STATIONARY
+  aggro-range: 44
+traits:
+  - { trait: commander, radius: 12, cooldown: 8s }
+skills:
+  - skill: wither_skull
+    trigger: { types: [TICK], cooldown: 3s, target: NEAREST_PLAYER, min-range: 4, max-range: 40, chance: 0.8 }
+    params: { type: wither_skull, count: 1, speed: 1.2 }
+drops:
+  xp: 22-40
+  items:
+    - { material: COAL, amount: 2-5, chance: 0.6 }
+    - { material: WITHER_SKELETON_SKULL, amount: 1, chance: 0.05 }
+scaling: { health-per-player: 0.1, damage-per-player: 0.03, max-players: 8 }

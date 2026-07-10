@@ -1,0 +1,57 @@
+# CORRUPTED INVASION · reality frays; blinking, vanishing horrors from the void.
+id: corrupted_invasion
+name: "<color:#7c4dff>Corrupted Invasion</color>"
+description: "The void leaks through. Things that should not move, move."
+difficulty: 1.6
+duration: 10m
+cooldown: 30m
+
+area:
+  shape: SPHERE
+  radius: 65
+  dynamic: true
+
+spawn:
+  max-per-tick: 8
+  max-mobs: 65
+  min-player-distance: 12
+  attempts: 28
+
+activation:
+  min-players: 1
+  max-players: 10
+
+start-title: "<color:#7c4dff><bold>Corrupted Invasion</bold></color>"
+start-subtitle: "<gray>The air tears like paper</gray>"
+sound: entity_enderman_scream
+
+waves:
+  - label: "Fractures"
+    start-delay: 3s
+    mobs:
+      - { mob: void_phantom, count: 2-3, per-player: 1, role: elite }
+      - { mob: umbral_ambusher, count: 3-4, per-player: 1 }
+  - label: "Unmaking"
+    start-delay: 5s
+    mobs:
+      - { mob: void_phantom, count: 3-4, per-player: 1, role: elite }
+      - { mob: nightshade_stalker, count: 2-3, per-player: 1, role: elite }
+      - { mob: bonelord_necromancer, count: 1, per-player: 1, role: elite }
+  - label: "The Rift Lord"
+    start-delay: 5s
+    clear-threshold: 1.0
+    title: "<color:#7c4dff>A Rift Lord steps through</color>"
+    mobs:
+      - { mob: void_phantom, count: 2, role: boss, boss: true }
+      - { mob: nightshade_stalker, count: 2-3, per-player: 1, role: elite }
+
+rewards:
+  xp: 260-460
+  message: "<green>The rift seals. Reality knits back together."
+  items:
+    - { material: ENDER_PEARL, amount: 4-8, chance: 0.9 }
+    - { material: ENDER_EYE, amount: 2-4, chance: 0.5 }
+    - { material: NETHERITE_SCRAP, amount: 1-2, chance: 0.2 }
+
+end-message: "<green><bold>The Corruption recedes!</bold>"
+fail-message: "<red>The void consumes the area..."

@@ -1,0 +1,67 @@
+# ARENA DEFENSE · FIXED-area example. Spawns around set coordinates rather than the trigger.
+# Edit area.world / x / y / z to your arena's centre. Demonstrates a non-dynamic horde.
+id: arena_defense
+name: "<gold>Arena Defense</gold>"
+description: "Hold the arena floor against escalating waves."
+difficulty: 1.4
+duration: 10m
+cooldown: 15m
+
+area:
+  shape: CYLINDER
+  radius: 40
+  height: 20
+  dynamic: false
+  world: world
+  x: 0.0
+  y: 64.0
+  z: 0.0
+
+spawn:
+  max-per-tick: 8
+  max-mobs: 60
+  min-player-distance: 6
+  attempts: 30
+
+activation:
+  worlds: [world]
+  min-players: 1
+  max-players: 12
+
+start-title: "<gold><bold>Arena Defense</bold></gold>"
+start-subtitle: "<gray>Round 1 — begin!</gray>"
+sound: ui_toast_challenge_complete
+
+waves:
+  - label: "Round 1"
+    start-delay: 3s
+    mobs:
+      - { mob: zombie_grunt, count: 8-10, per-player: 2 }
+  - label: "Round 2"
+    start-delay: 4s
+    mobs:
+      - { mob: skeletal_grunt, count: 6-8, per-player: 2 }
+      - { mob: umbral_ambusher, count: 1-2, per-player: 1, role: elite }
+  - label: "Round 3"
+    start-delay: 4s
+    mobs:
+      - { mob: granite_brute, count: 1-2, per-player: 1, role: elite }
+      - { mob: husk_marauder, count: 4-6, per-player: 2 }
+  - label: "Final Round"
+    start-delay: 5s
+    clear-threshold: 1.0
+    title: "<gold>Final Round</gold>"
+    mobs:
+      - { mob: iron_warlord, count: 1, role: boss, boss: true }
+
+rewards:
+  xp: 220-400
+  message: "<green>Champion of the arena!"
+  commands:
+    - "title %player% title {\"text\":\"VICTORY\",\"color\":\"gold\"}"
+  items:
+    - { material: GOLD_BLOCK, amount: 1-3, chance: 0.8 }
+    - { material: DIAMOND, amount: 2-5, chance: 0.7 }
+
+end-message: "<green><bold>Arena cleared!</bold>"
+fail-message: "<red>The arena floor is lost..."

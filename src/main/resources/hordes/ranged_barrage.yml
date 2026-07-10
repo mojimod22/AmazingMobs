@@ -1,0 +1,58 @@
+# RANGED-HEAVY · a wall of projectiles. Cover and gap-closing matter most here.
+id: ranged_barrage
+name: "<color:#ffd54f>Ranged Barrage</color>"
+description: "Arrows, snowballs, fireballs and lightning — all at once."
+difficulty: 1.45
+duration: 8m
+cooldown: 22m
+
+area:
+  shape: CYLINDER
+  radius: 75
+  height: 35
+  dynamic: true
+
+spawn:
+  max-per-tick: 7
+  max-mobs: 55
+  min-player-distance: 18
+  attempts: 30
+
+activation:
+  min-players: 1
+  max-players: 10
+
+start-title: "<color:#ffd54f><bold>Ranged Barrage</bold></color>"
+start-subtitle: "<gray>Find cover — fast</gray>"
+sound: entity_arrow_shoot
+
+waves:
+  - label: "Volley"
+    start-delay: 3s
+    mobs:
+      - { mob: skeletal_grunt, count: 6-9, per-player: 2 }
+      - { mob: permafrost_revenant, count: 2-3, per-player: 1 }
+  - label: "Bombardment"
+    start-delay: 5s
+    mobs:
+      - { mob: cinder_lobber, count: 2-3, per-player: 1, role: elite }
+      - { mob: ember_magus, count: 2-3, per-player: 1 }
+      - { mob: storm_herald, count: 1-2, per-player: 1, role: elite }
+  - label: "Artillery Master"
+    start-delay: 5s
+    clear-threshold: 1.0
+    title: "<color:#ffd54f>The Artillery Master</color>"
+    mobs:
+      - { mob: cinder_lobber, count: 2, role: boss, boss: true }
+      - { mob: skeletal_grunt, count: 4-6, per-player: 2 }
+
+rewards:
+  xp: 200-380
+  message: "<green>The barrage falls silent."
+  items:
+    - { material: ARROW, amount: 32-64, chance: 0.9 }
+    - { material: GOLD_INGOT, amount: 3-6, chance: 0.6 }
+    - { material: DIAMOND, amount: 1-2, chance: 0.4 }
+
+end-message: "<green><bold>Ranged Barrage weathered!</bold>"
+fail-message: "<red>Cut down at range..."

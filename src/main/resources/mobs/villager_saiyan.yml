@@ -1,0 +1,75 @@
+# THE VILLAGER SAIYAN · a golden-aura'd villager that powers up and fires arrow barrages.
+# The 'aura' skill draws a rising Super-Saiyan particle column + a sustained STRENGTH buff.
+id: villager_saiyan
+name: "<gradient:#ffd700:#fff59d><bold>Villager Saiyan</bold></gradient>"
+lore:
+  - "<yellow>It's over 9000."
+type: VILLAGER
+tier: MINIBOSS
+category: villager
+tags: [villager, ranged, saiyan]
+
+stats:
+  health: 120
+  damage: 6
+  speed: 0.45
+  armor: 8
+  knockback-resistance: 0.4
+  follow-range: 50
+  regen-per-second: 0.5
+
+ai:
+  aggression: AGGRESSIVE
+  movement: STRAFE
+  target-priority: [NEAREST]
+  aggro-range: 50
+
+traits:
+  - { trait: hunter, drive: true, drive-power: 0.18, reach: 2.6 }
+  - { trait: berserker, threshold: 0.5, strength: 1, speed: 1 }
+
+skills:
+  - skill: aura
+    label: "Super Saiyan Aura"
+    trigger: { types: [TICK, ON_SPAWN], cooldown: 3s, target: SELF, duration: 4s }
+    params:
+      effect: strength
+      amplifier: 1
+      color: "#FFEB3B"
+      count: 30
+      radius: 0.65
+      size: 1.7
+      sound: entity_illusioner_prepare_mirror
+  - skill: arrow_volley
+    label: "Kamehameha Barrage"
+    trigger: { types: [TICK], cooldown: 2s, min-range: 5, max-range: 45, target: NEAREST_PLAYER, chance: 0.95 }
+    params: { type: arrow, count: 6, spread: 0.16, speed: 2.0, damage: 4, sound: entity_arrow_shoot }
+  - skill: strike
+    label: "Melee Combo"
+    trigger: { types: [TICK], cooldown: 1s, max-range: 2.6, target: TARGET }
+    params: { damage: 6, knockback: 0.4 }
+  - skill: repel
+    label: "Power Up Shockwave"
+    trigger: { types: [ON_DAMAGED], cooldown: 8s, chance: 0.3, target: ALL_PLAYERS_IN_RADIUS, radius: 4 }
+    params: { power: 1.0, upward: 0.4 }
+
+drops:
+  clear-vanilla: true
+  xp: 120-220
+  items:
+    - { material: GOLD_BLOCK, amount: 1-2, chance: 0.7 }
+    - { material: ENCHANTED_GOLDEN_APPLE, amount: 1, chance: 0.4 }
+    - { material: ARROW, amount: 16-32, chance: 0.8 }
+
+presentation:
+  glow: true
+  glow-color: YELLOW
+  boss-bar: true
+  boss-bar-color: YELLOW
+  boss-bar-title: "<gradient:#ffd700:#fff59d><bold>Villager Saiyan</bold></gradient>"
+  ambient-particle: end_rod
+
+scaling:
+  health-per-player: 0.15
+  damage-per-player: 0.05
+  max-players: 10

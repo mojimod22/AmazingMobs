@@ -1,0 +1,87 @@
+# ENDGAME FINALE · the ultimate event. Every archetype, three minibosses, and a triple-boss finish.
+# Tuned for a coordinated raid group on strong gear. The capstone of the example pack.
+id: last_stand
+name: "<gradient:#b71c1c:#ffd000:#b71c1c><bold>The Last Stand</bold></gradient>"
+description: "Everything the horde has, all at once. There is no harder fight."
+difficulty: 2.1
+duration: 18m
+cooldown: 90m
+
+area:
+  shape: CYLINDER
+  radius: 95
+  height: 50
+  dynamic: true
+
+spawn:
+  max-per-tick: 11
+  max-mobs: 120
+  min-player-distance: 12
+  attempts: 30
+
+activation:
+  min-players: 4
+  max-players: 16
+
+start-title: "<gradient:#b71c1c:#ffd000:#b71c1c><bold>THE LAST STAND</bold></gradient>"
+start-subtitle: "<red>Everything you have. Everything they are.</red>"
+sound: entity_wither_spawn
+
+waves:
+  - label: "The Endless Horde"
+    start-delay: 5s
+    clear-threshold: 0.85
+    mobs:
+      - { mob: zombie_grunt, count: 14-18, per-player: 4 }
+      - { mob: skeletal_grunt, count: 8-10, per-player: 3 }
+      - { mob: spiderling, count: 10-12, per-player: 4 }
+      - { mob: husk_marauder, count: 6-8, per-player: 2 }
+  - label: "The Elites Awaken"
+    start-delay: 6s
+    mobs:
+      - { mob: bonecrusher_juggernaut, count: 1-2, per-player: 1, role: elite }
+      - { mob: granite_brute, count: 1-2, per-player: 1, role: elite }
+      - { mob: frost_weaver, count: 1, per-player: 1, role: elite }
+      - { mob: storm_herald, count: 1, per-player: 1, role: elite }
+      - { mob: ember_magus, count: 1-2, per-player: 1 }
+      - { mob: verdant_mender, count: 1, per-player: 1, role: elite }
+  - label: "The Three Champions"
+    start-delay: 7s
+    title: "<gold>The Champions take the field</gold>"
+    mobs:
+      - { mob: broodmother, count: 1, role: miniboss }
+      - { mob: unbreakable_colossus, count: 1, role: miniboss }
+      - { mob: magma_tyrant, count: 1, role: miniboss }
+  - label: "The Final Stand"
+    start-delay: 8s
+    clear-threshold: 1.0
+    title: "<gradient:#b71c1c:#ffd000><bold>THE FINAL STAND</bold></gradient>"
+    subtitle: "<dark_red>Hold the line, or fall together</dark_red>"
+    sound: entity_wither_spawn
+    mobs:
+      - { mob: dread_overlord, count: 1, role: boss, boss: true }
+      - { mob: iron_warlord, count: 1, per-player: 1, role: elite }
+      - { mob: nightshade_stalker, count: 2-3, per-player: 1, role: elite }
+      - { mob: void_phantom, count: 1-2, per-player: 1, role: elite }
+
+rewards:
+  xp: 1200-2000
+  message: "<gradient:#b71c1c:#ffd000>You made your Last Stand — and you are still standing.</gradient>"
+  commands:
+    - "title %player% title {\"text\":\"LEGEND\",\"color\":\"gold\",\"bold\":true}"
+  items:
+    - { material: NETHERITE_INGOT, amount: 3-6, chance: 0.9 }
+    - { material: NETHER_STAR, amount: 2-3, chance: 0.6 }
+    - { material: ENCHANTED_GOLDEN_APPLE, amount: 3-5, chance: 0.8 }
+    - { material: DIAMOND_BLOCK, amount: 2-4, chance: 0.8 }
+    - material: NETHERITE_SWORD
+      amount: 1
+      chance: 0.15
+      name: "<gradient:#b71c1c:#ffd000>Blade of the Last Stand</gradient>"
+      lore: ["<gray>Forged from a victory that should not have happened."]
+      enchants: { sharpness: 5, fire_aspect: 2, unbreaking: 3 }
+      unbreakable: true
+      glow: true
+
+end-message: "<gradient:#b71c1c:#ffd000><bold>THE LAST STAND IS WON!</bold></gradient>"
+fail-message: "<dark_red>The last stand falls. The horde is victorious... this time.</dark_red>"

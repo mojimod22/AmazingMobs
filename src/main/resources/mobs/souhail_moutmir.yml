@@ -1,0 +1,83 @@
+# SOUHAIL MOUTMIR · a furious zombie villager turned blink-and-barrage boss. Sprints absurdly fast,
+# leaps several blocks at the player again and again, then suddenly retreats to unleash an explosive
+# wither-skull volley (big blast + fire + lightning + poison + slow), before leaping back in to pepper
+# players with fast, weak melee. Low damage per hit — but relentless and rapid.
+id: souhail_moutmir
+name: "<dark_red><bold>Souhail Moutmir</bold></dark_red>"
+lore:
+  - "<red>Incazzatissimo. E velocissimo."
+  - "<gray>Non vede l'ora di sconfiggervi."
+type: ZOMBIE_VILLAGER
+tier: MINIBOSS
+category: villager
+tags: [villager, boss, fast, exploder]
+
+stats:
+  health: 130
+  damage: 3            # low per-hit by design — the threat is speed + the barrage
+  speed: 0.5           # impressive sprint (vanilla zombie is 0.23)
+  armor: 6
+  knockback-resistance: 0.7
+  follow-range: 52
+  regen-per-second: 0.4
+
+ai:
+  aggression: AGGRESSIVE
+  movement: CHASE
+  target-priority: [NEAREST]
+  aggro-range: 52
+  chase-speed: 1.75
+  clear-vanilla-goals: true
+
+skills:
+  # rapid, weak, close-together melee
+  - skill: strike
+    label: "Flurry"
+    trigger: { types: [TICK], cooldown: 0.5s, max-range: 2.6, target: TARGET }
+    params: { damage: 3, knockback: 0.05, sound: entity_player_attack_sweep }
+  # quick repeated leaps of several blocks toward the player
+  - skill: jump_attack
+    label: "Leaping Rush"
+    trigger: { types: [TICK], cooldown: 1.5s, min-range: 3, max-range: 16, target: NEAREST_PLAYER, radius: 3 }
+    params: { power: 1.15, upward: 0.55, damage: 2, knockup: 0.25, delay: 0, sound: entity_zombie_villager_ambient }
+
+  # --- decisive phase (every ~12s): sudden retreat, then explosive barrage + storm ---
+  - skill: blink
+    label: "Sudden Retreat"
+    trigger: { types: [TICK], cooldown: 12s, min-range: 2, max-range: 16, target: NEAREST_PLAYER }
+    params: { mode: away_from_target, distance: 9, sound: entity_enderman_teleport }
+  - skill: wither_skull
+    label: "Explosive Barrage"
+    trigger: { types: [TICK], cooldown: 12s, min-range: 4, max-range: 48, target: NEAREST_PLAYER }
+    params: { count: 9, charged: true, speed: 1.7, spread: 0.22, yield: 3.0, incendiary: true, sound: entity_wither_shoot }
+  - skill: thunder
+    label: "Storm Call"
+    trigger: { types: [TICK], cooldown: 12s, max-range: 48, target: ALL_PLAYERS_IN_RADIUS, radius: 14 }
+    params: { damage: 4 }
+  - skill: poison
+    label: "Toxic Fallout"
+    trigger: { types: [TICK], cooldown: 12s, max-range: 48, target: ALL_PLAYERS_IN_RADIUS, radius: 14 }
+    params: { amplifier: 1, duration: 6s }
+  - skill: slow
+    label: "Concussive Slow"
+    trigger: { types: [TICK], cooldown: 12s, max-range: 48, target: ALL_PLAYERS_IN_RADIUS, radius: 14 }
+    params: { amplifier: 1, duration: 6s }
+
+drops:
+  clear-vanilla: true
+  xp: 160-260
+  items:
+    - { material: ENCHANTED_GOLDEN_APPLE, amount: 1-2, chance: 0.6 }
+    - { material: EMERALD, amount: 4-12, chance: 0.85 }
+
+presentation:
+  glow: true
+  glow-color: RED
+  boss-bar: true
+  boss-bar-color: RED
+  boss-bar-title: "<dark_red><bold>Souhail Moutmir</bold></dark_red>"
+  ambient-particle: angry_villager
+
+scaling:
+  health-per-player: 0.18
+  max-players: 10

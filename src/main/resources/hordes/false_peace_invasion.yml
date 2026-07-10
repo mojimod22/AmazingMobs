@@ -1,0 +1,44 @@
+# FALSE PEACE · it opens looking harmless — a cluster of "villagers". Then the blades come out.
+id: false_peace_invasion
+name: "<gray>False Peace</gray>"
+description: "Trust nothing that offers you emeralds."
+difficulty: 1.4
+duration: 8m
+cooldown: 24m
+
+area: { shape: SPHERE, radius: 60, dynamic: true }
+spawn: { max-per-tick: 7, max-mobs: 55, min-player-distance: 14, attempts: 28 }
+activation: { min-players: 1, max-players: 8 }
+
+start-title: "<gray>An uneasy quiet...</gray>"
+start-subtitle: "<dark_gray>...too quiet</dark_gray>"
+sound: entity_villager_ambient
+
+waves:
+  - label: "The 'Welcome'"
+    start-delay: 4s
+    mobs:
+      - { mob: illusion_villager, count: 5-7, per-player: 2, role: elite }
+  - label: "The Betrayal"
+    start-delay: 4s
+    title: "<dark_red>It was a trap!</dark_red>"
+    mobs:
+      - { mob: villager_zealot, count: 5-7, per-player: 2 }
+      - { mob: nightshade_stalker, count: 1-2, per-player: 1, role: elite }
+  - label: "The True Face"
+    start-delay: 5s
+    clear-threshold: 1.0
+    title: "<dark_red>Their leader emerges</dark_red>"
+    mobs:
+      - { mob: iron_warlord, count: 1, role: boss, boss: true }
+      - { mob: illusion_villager, count: 3-4, per-player: 1, role: elite }
+
+rewards:
+  xp: 190-340
+  message: "<green>The masks are off — and so are they."
+  items:
+    - { material: EMERALD, amount: 4-8, chance: 0.7 }
+    - { material: NETHERITE_SCRAP, amount: 1, chance: 0.15 }
+
+end-message: "<green><bold>False Peace shattered!</bold>"
+fail-message: "<red>You should have known better..."

@@ -1,0 +1,56 @@
+# OBJECTIVE EVENT · battlefield objects in action. Bat Nests spawn endless swarms — the wave only
+# clears when every NEST is destroyed (the swarm itself never ends until then). Then the Broodmother.
+id: hollow_nest_war
+name: "<dark_gray><bold>Hollow Nest War</bold></dark_gray>"
+description: "Destroy the nests, or drown in wings."
+difficulty: 1.6
+duration: 12m
+cooldown: 0
+
+director:
+  enabled: true
+  min-multiplier: 0.8
+  max-multiplier: 1.8
+  step: 0.12
+  target-clear-seconds: 50
+
+area: { shape: CYLINDER, radius: 55, height: 30, dynamic: true }
+spawn: { max-per-tick: 10, max-mobs: 100, min-player-distance: 8, attempts: 26 }
+activation: { min-players: 1, max-players: 12 }
+
+start-title: "<dark_gray><bold>Hollow Nest War</bold></dark_gray>"
+start-subtitle: "<gray>Find the nests. Tear them down.</gray>"
+sound: ambient_cave
+
+waves:
+  - label: "The Swarm Gathers"
+    start-delay: 3s
+    clear-threshold: 0.8
+    mobs:
+      - { mob: swarm_bat, count: 10-14, per-player: 4 }
+      - { mob: echo_bat, count: 3-5, per-player: 1 }
+  - label: "Destroy the Nests!"
+    start-delay: 4s
+    title: "<dark_purple>Destroy the Bat Nests!</dark_purple>"
+    subtitle: "<gray>They won't stop spawning until you do</gray>"
+    mobs:
+      - { mob: bat_nest, count: 2, objective: true }
+      - { mob: bomber_bat, count: 2-3, per-player: 1 }
+  - label: "The Broodmother"
+    start-delay: 5s
+    clear-threshold: 1.0
+    title: "<dark_purple><bold>The Broodmother awakens</bold></dark_purple>"
+    mobs:
+      - { mob: bat_broodmother, count: 1, role: boss, boss: true }
+      - { mob: swarm_bat, count: 6-8, per-player: 2 }
+
+rewards:
+  xp: 250-450
+  message: "<green>The nests are ash and the sky is clear."
+  items:
+    - { material: PHANTOM_MEMBRANE, amount: 4-8, chance: 0.9 }
+    - { material: ECHO_SHARD, amount: 1-2, chance: 0.4 }
+    - { material: DIAMOND, amount: 2-4, chance: 0.6 }
+
+end-message: "<green><bold>Hollow Nest War won!</bold>"
+fail-message: "<red>The swarm never ended..."

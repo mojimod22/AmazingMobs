@@ -1,0 +1,76 @@
+# Archetype: ANTI-KNOCKBACK JUGGERNAUT — utterly immovable, grinds forward, AoE slams.
+# Tactical role: unstoppable siege piece; you cannot peel it. Win by out-DPSing or kiting allies away.
+id: unbreakable_colossus
+name: "<gradient:#546e7a:#b0bec5><bold>Unbreakable Colossus</bold></gradient>"
+lore:
+  - "<gray>Knockback is a concept it does not acknowledge."
+type: IRON_GOLEM
+tier: MINIBOSS
+category: juggernaut
+tags: [construct, melee, frontline]
+
+stats:
+  health: 320
+  damage: 14
+  speed: 0.22
+  armor: 14
+  armor-toughness: 6
+  knockback-resistance: 1.0
+  knockback-immune: true
+  fall-immune: true
+  follow-range: 40
+  scale: 1.15
+  damage-multipliers:
+    projectile: 0.85   # plated against arrows
+
+ai:
+  aggression: AGGRESSIVE
+  movement: CHASE
+  target-priority: [NEAREST]
+  aggro-range: 40
+
+skills:
+  - skill: area_slam
+    label: "Earthshaker"
+    trigger:
+      types: [TICK]
+      cooldown: 6s
+      warmup: 1s
+      max-range: 5
+      radius: 6
+      chance: 0.85
+    params:
+      damage: 12
+      knockup: 0.9
+      knockback: 1.0
+      sound: entity_iron_golem_attack
+      particle: block_crack
+  - skill: slow
+    label: "Crushing Presence"
+    trigger:
+      types: [TICK]
+      cooldown: 7s
+      target: ALL_PLAYERS_IN_RADIUS
+      radius: 6
+      duration: 4s
+      chance: 0.6
+    params:
+      effects:
+        - { type: slowness, amplifier: 1 }
+
+drops:
+  xp: 70-120
+  items:
+    - { material: IRON_BLOCK, amount: 3-6, chance: 0.8 }
+    - { material: NETHERITE_INGOT, amount: 1, chance: 0.08 }
+
+presentation:
+  glow: false
+  boss-bar: true
+  boss-bar-color: WHITE
+  boss-bar-title: "<gray>Unbreakable Colossus"
+
+scaling:
+  health-per-player: 0.18
+  damage-per-player: 0.04
+  max-players: 8

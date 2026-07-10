@@ -1,0 +1,55 @@
+# SAIYAN INVASION · golden-aura villagers raining arrows, with a Thunder Lord storm finale.
+# Showcases the aura skill, arrow barrages, the new lightning skill, and dynamic scaling mobs.
+id: saiyan_invasion
+name: "<gradient:#ffd700:#fff59d><bold>Saiyan Invasion</bold></gradient>"
+description: "They have surpassed their power level. Repeatedly."
+difficulty: 1.7
+duration: 11m
+cooldown: 0
+
+director:
+  enabled: true
+  min-multiplier: 0.8
+  max-multiplier: 2.0
+  step: 0.15
+  target-clear-seconds: 40
+
+area: { shape: CYLINDER, radius: 70, height: 32, dynamic: true }
+spawn: { max-per-tick: 9, max-mobs: 80, min-player-distance: 12, attempts: 28 }
+activation: { min-players: 1, max-players: 12 }
+
+start-title: "<gradient:#ffd700:#fff59d><bold>SAIYAN INVASION</bold></gradient>"
+start-subtitle: "<yellow>Sense that power level?</yellow>"
+sound: entity_lightning_bolt_thunder
+
+waves:
+  - label: "Power Up"
+    start-delay: 3s
+    mobs:
+      - { mob: villager_zealot, count: 5-7, per-player: 2 }
+      - { mob: swarm_sprinter, count: 5-7, per-player: 2 }
+  - label: "Arrow Storm"
+    start-delay: 5s
+    mobs:
+      - { mob: villager_saiyan, count: 1-2, per-player: 1, role: elite }
+      - { mob: voltaic_brute, count: 2-3, per-player: 1, role: elite }
+  - label: "Final Form"
+    start-delay: 6s
+    clear-threshold: 1.0
+    title: "<gradient:#ffd700:#fff59d><bold>FINAL FORM</bold></gradient>"
+    sound: entity_lightning_bolt_thunder
+    mobs:
+      - { mob: thunder_lord, count: 1, role: boss, boss: true }
+      - { mob: villager_saiyan, count: 1, per-player: 1, role: elite }
+      - { mob: growth_behemoth, count: 1, role: miniboss }
+
+rewards:
+  xp: 350-650
+  message: "<green>Their power level finally hit zero."
+  items:
+    - { material: GOLD_BLOCK, amount: 2-4, chance: 0.8 }
+    - { material: ENCHANTED_GOLDEN_APPLE, amount: 1-2, chance: 0.6 }
+    - { material: NETHERITE_SCRAP, amount: 1-2, chance: 0.3 }
+
+end-message: "<green><bold>Saiyan Invasion defeated!</bold>"
+fail-message: "<red>You were not strong enough..."

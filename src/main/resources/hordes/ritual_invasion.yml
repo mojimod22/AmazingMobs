@@ -1,0 +1,57 @@
+# RITUAL INVASION · cultists complete a dark rite; stop them, or face what they summon.
+id: ritual_invasion
+name: "<dark_purple>Ritual Invasion</dark_purple>"
+description: "Break the conclave before the rite is complete — or meet the Overlord."
+difficulty: 1.7
+duration: 11m
+cooldown: 35m
+
+area:
+  shape: SPHERE
+  radius: 60
+  dynamic: true
+
+spawn:
+  max-per-tick: 8
+  max-mobs: 75
+  min-player-distance: 12
+  attempts: 26
+
+activation:
+  min-players: 2
+  max-players: 10
+
+start-title: "<dark_purple><bold>Ritual Invasion</bold></dark_purple>"
+start-subtitle: "<gray>A dark rite has begun</gray>"
+sound: entity_evoker_cast_spell
+
+waves:
+  - label: "The Cultists"
+    start-delay: 3s
+    mobs:
+      - { mob: bonelord_necromancer, count: 2-3, per-player: 1, role: elite }
+      - { mob: skeletal_grunt, count: 5-7, per-player: 2 }
+  - label: "The Wardens"
+    start-delay: 5s
+    mobs:
+      - { mob: grave_warden, count: 2-3, per-player: 1, role: elite }
+      - { mob: umbral_ambusher, count: 2-3, per-player: 1 }
+  - label: "The Summoning"
+    start-delay: 6s
+    clear-threshold: 1.0
+    title: "<dark_purple><bold>The rite is complete...</bold></dark_purple>"
+    subtitle: "<dark_red>The Dread Overlord answers</dark_red>"
+    sound: entity_wither_spawn
+    mobs:
+      - { mob: dread_overlord, count: 1, role: boss, boss: true }
+
+rewards:
+  xp: 400-700
+  message: "<green>The Overlord is banished. The ritual undone."
+  items:
+    - { material: NETHERITE_INGOT, amount: 1-2, chance: 0.5 }
+    - { material: ENCHANTED_GOLDEN_APPLE, amount: 1-2, chance: 0.5 }
+    - { material: NETHER_STAR, amount: 1, chance: 0.1 }
+
+end-message: "<green><bold>Ritual Invasion thwarted!</bold>"
+fail-message: "<red>The Overlord walks free. The area is doomed."

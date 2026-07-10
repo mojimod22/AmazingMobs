@@ -1,0 +1,73 @@
+# Archetype: SHIELD BEARER — extremely tanky, shields itself and hardens nearby allies.
+# Tactical role: anchors a push; kill the squishies behind it first. Synergy: protects casters.
+id: aegis_sentinel
+name: "<gradient:#ffd54f:#fff8e1>Aegis Sentinel</gradient>"
+lore:
+  - "<yellow>None shall pass while it stands."
+type: PIGLIN_BRUTE
+tier: ELITE
+category: defender
+tags: [melee, frontline, support]
+
+stats:
+  health: 130
+  damage: 8
+  speed: 0.23
+  armor: 16
+  armor-toughness: 6
+  knockback-resistance: 0.6
+  follow-range: 36
+  max-absorption: 10
+
+equipment:
+  main-hand: { material: GOLDEN_AXE, enchants: { sharpness: 2 }, drop-chance: 0.05 }
+  off-hand: { material: SHIELD, drop-chance: 0.05 }
+  chestplate: { material: GOLDEN_CHESTPLATE, enchants: { protection: 3 }, drop-chance: 0.03 }
+
+ai:
+  aggression: AGGRESSIVE
+  movement: CHASE
+  target-priority: [MOST_ARMORED, NEAREST]
+  aggro-range: 36
+
+skills:
+  - skill: shield
+    label: "Bulwark"
+    trigger:
+      types: [ON_LOW_HEALTH, TICK]
+      cooldown: 18s
+      target: SELF
+      duration: 6s
+      max-health-pct: 0.6
+    params:
+      effects:
+        - { type: resistance, amplifier: 3 }
+        - { type: absorption, amplifier: 1 }
+      particle: enchanted_hit
+      sound: item_shield_block
+  - skill: buff
+    label: "Hold the Line"
+    trigger:
+      types: [TICK]
+      cooldown: 12s
+      target: ALL_IN_RADIUS
+      radius: 10
+      duration: 8s
+    params:
+      effects:
+        - { type: resistance, amplifier: 0 }
+      particle: scrape
+
+drops:
+  xp: 32-58
+  items:
+    - { material: GOLD_BLOCK, amount: 1, chance: 0.25 }
+    - { material: NETHERITE_SCRAP, amount: 1, chance: 0.1 }
+
+presentation:
+  glow: false
+
+scaling:
+  health-per-player: 0.14
+  damage-per-player: 0.04
+  max-players: 8

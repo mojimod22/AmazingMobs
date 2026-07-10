@@ -1,0 +1,54 @@
+# VILLAGER REVOLT · a fully hostile villager — no trading, armed, and out for blood.
+# Hostility without NMS: the 'hunter' trait (drive:true) closes distance and the 'strike' skill
+# lands the melee hit. Right-click trading is blocked for all custom mobs.
+id: villager_zealot
+name: "<color:#8d6e63>Villager Zealot</color>"
+lore:
+  - "<gray>The village turned on you. This one leads the mob."
+type: VILLAGER
+tier: ELITE
+category: villager
+tags: [villager, melee, frontline]
+
+stats:
+  health: 60
+  damage: 7
+  speed: 0.42
+  armor: 5
+  follow-range: 40
+
+equipment:
+  main-hand: { material: IRON_SWORD, name: "<gray>Pitchfork of Spite", enchants: { sharpness: 2 }, drop-chance: 0.05 }
+  helmet: { material: IRON_HELMET, drop-chance: 0.03 }
+
+ai:
+  aggression: AGGRESSIVE
+  movement: CHASE
+  aggro-range: 40
+
+traits:
+  - { trait: hunter, drive: true, drive-power: 0.28, speed: 0, reach: 2.5 }
+  - { trait: revenge, strength: 1, rally: true, rally-radius: 14 }
+
+skills:
+  - skill: strike
+    label: "Cleave"
+    trigger: { types: [TICK], cooldown: 1s, max-range: 2.6, target: TARGET }
+    params: { damage: 7, knockback: 0.35 }
+  - skill: weakness
+    label: "Mob Justice"
+    trigger: { types: [ON_ATTACK], cooldown: 4s, target: TARGET, duration: 4s, chance: 0.4 }
+
+drops:
+  xp: 18-34
+  items:
+    - { material: EMERALD, amount: 1-3, chance: 0.6 }
+
+presentation:
+  glow: false
+  ambient-sound: entity_pillager_ambient
+
+scaling:
+  health-per-player: 0.1
+  damage-per-player: 0.05
+  max-players: 8

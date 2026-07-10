@@ -1,0 +1,74 @@
+# Archetype: BOMBER — lobs explosive fire from range, sets the ground ablaze.
+# Tactical role: area denial; forces players to keep moving. Synergy: pairs with melee that pins.
+id: cinder_lobber
+name: "<gradient:#ff7043:#ffca28>Cinder Lobber</gradient>"
+lore:
+  - "<gold>It treats every fight like target practice."
+type: PIGLIN
+tier: RARE
+category: bomber
+tags: [fire, ranged, artillery]
+
+stats:
+  health: 60
+  damage: 4
+  speed: 0.24
+  armor: 4
+  follow-range: 48
+  fire-immune: true
+  damage-multipliers:
+    fire: 0.0
+    projectile: 1.2
+
+equipment:
+  helmet: { material: GOLDEN_HELMET, drop-chance: 0.03 }
+
+ai:
+  aggression: AGGRESSIVE
+  movement: KITE
+  target-priority: [NEAREST]
+  aggro-range: 46
+  kite-distance: 14
+
+skills:
+  - skill: fireball
+    label: "Mortar"
+    trigger:
+      types: [TICK]
+      cooldown: 5s
+      min-range: 8
+      max-range: 44
+      chance: 0.85
+    params:
+      type: large_fireball
+      count: 1
+      yield: 1.5
+      incendiary: true
+      speed: 1.1
+      sound: entity_ghast_shoot
+  - skill: projectile_burst
+    label: "Cluster Shot"
+    trigger:
+      types: [ON_LOW_HEALTH]
+      max-health-pct: 0.5
+      cooldown: 1s
+      max-range: 40
+    params:
+      type: small_fireball
+      count: 6
+      spread: 0.22
+      incendiary: true
+
+drops:
+  xp: 20-38
+  items:
+    - { material: GOLD_INGOT, amount: 1-3, chance: 0.5 }
+    - { material: FIRE_CHARGE, amount: 2-5, chance: 0.5 }
+
+presentation:
+  ambient-particle: lava
+
+scaling:
+  health-per-player: 0.09
+  damage-per-player: 0.05
+  max-players: 8

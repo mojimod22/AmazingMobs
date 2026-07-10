@@ -1,0 +1,45 @@
+# GIOCATRICE DELLA SQUADRA FEMMINILE · a very fast villager adept that dances around players (STRAFE)
+# in a cohesive swarm and lands many tiny, rapid jabs. Built to gang up — several can circle and strike
+# the same target at once, pinning players while Souhail Moutmir breaks off for his barrage.
+id: giocatrice_squadra_femminile
+name: "<light_purple>Giocatrice della Squadra Femminile</light_purple>"
+lore:
+  - "<gray>Si muove in formazione, colpisce in gruppo."
+type: VILLAGER
+tier: UNCOMMON
+category: villager
+tags: [villager, swarm, fast]
+
+stats:
+  health: 18
+  damage: 1            # tiny hits — danger is in the numbers
+  speed: 0.5           # very fast, keeps pace with Souhail
+  knockback-resistance: 0.1
+  follow-range: 42
+
+ai:
+  aggression: AGGRESSIVE
+  movement: STRAFE      # circles the target — the "dance"
+  target-priority: [NEAREST]
+  aggro-range: 42
+  chase-speed: 1.6
+  clear-vanilla-goals: true
+
+skills:
+  - skill: strike
+    label: "Quick Jab"
+    trigger: { types: [TICK], cooldown: 0.6s, max-range: 2.2, target: TARGET }
+    params: { damage: 1, knockback: 0.0 }
+
+drops:
+  clear-vanilla: true
+  xp: 5-10
+
+presentation:
+  glow: true
+  glow-color: LIGHT_PURPLE
+  ambient-particle: heart
+
+scaling:
+  health-per-player: 0.05
+  max-players: 12

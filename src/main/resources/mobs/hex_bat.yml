@@ -1,0 +1,29 @@
+# BAT ECLIPSE · the hexer. Blinds and nauseates from the dark.
+id: hex_bat
+name: "<dark_purple>Hex Bat</dark_purple>"
+lore: ["<gray>You can't fight what you can't see."]
+type: BAT
+tier: RARE
+category: bat
+tags: [bat, flying, control]
+stats:
+  health: 18
+  damage: 2
+  speed: 0.6
+  follow-range: 42
+  fall-immune: true
+ai:
+  aggression: AGGRESSIVE
+  movement: AMBUSH
+  aggro-range: 42
+  chase-speed: 1.9
+traits:
+  - { trait: hunter, drive: true, drive-power: 0.2, reach: 2.5 }
+  - { trait: hexer, radius: 6, cooldown: 5s }
+skills:
+  - skill: blind
+    label: "Veil of Night"
+    trigger: { types: [TICK], cooldown: 6s, target: NEAREST_PLAYER, max-range: 16, duration: 3s, chance: 0.7 }
+drops:
+  xp: 4-8
+scaling: { health-per-player: 0.06, max-players: 8 }

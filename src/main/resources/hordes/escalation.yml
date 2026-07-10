@@ -1,0 +1,69 @@
+# ESCALATION EVENT · each wave steps up a tier — common, then elite, then miniboss-tier.
+id: escalation
+name: "<color:#ff9800>Escalation</color>"
+description: "It only gets worse from here."
+difficulty: 1.5
+duration: 11m
+cooldown: 24m
+
+area:
+  shape: CYLINDER
+  radius: 65
+  height: 30
+  dynamic: true
+
+spawn:
+  max-per-tick: 8
+  max-mobs: 70
+  min-player-distance: 12
+  attempts: 26
+
+activation:
+  min-players: 1
+  max-players: 10
+
+start-title: "<color:#ff9800><bold>Escalation</bold></color>"
+start-subtitle: "<gray>Tier 1</gray>"
+sound: block_note_block_pling
+
+waves:
+  - label: "Tier I — Common"
+    start-delay: 3s
+    subtitle: "<gray>Common</gray>"
+    mobs:
+      - { mob: zombie_grunt, count: 8-10, per-player: 3 }
+      - { mob: skeletal_grunt, count: 4-6, per-player: 2 }
+  - label: "Tier II — Rare"
+    start-delay: 4s
+    subtitle: "<aqua>Rare</aqua>"
+    mobs:
+      - { mob: ember_magus, count: 2-3, per-player: 1 }
+      - { mob: umbral_ambusher, count: 2-3, per-player: 1 }
+      - { mob: permafrost_revenant, count: 2-3, per-player: 1 }
+  - label: "Tier III — Elite"
+    start-delay: 5s
+    subtitle: "<light_purple>Elite</light_purple>"
+    mobs:
+      - { mob: bonecrusher_juggernaut, count: 1-2, per-player: 1, role: elite }
+      - { mob: frost_weaver, count: 1-2, per-player: 1, role: elite }
+      - { mob: storm_herald, count: 1, per-player: 1, role: elite }
+  - label: "Tier IV — Miniboss"
+    start-delay: 6s
+    clear-threshold: 1.0
+    subtitle: "<gold>Miniboss</gold>"
+    title: "<color:#ff9800>Maximum Escalation</color>"
+    mobs:
+      - { mob: growth_behemoth, count: 1, role: boss, boss: true }
+      - { mob: swarm_sprinter, count: 6-8, per-player: 2 }
+      - { mob: iron_warlord, count: 1, per-player: 1, role: elite }
+
+rewards:
+  xp: 320-560
+  message: "<green>You met the escalation and won."
+  items:
+    - { material: NETHERITE_SCRAP, amount: 1-3, chance: 0.4 }
+    - { material: DIAMOND_BLOCK, amount: 1, chance: 0.4 }
+    - { material: ENCHANTED_GOLDEN_APPLE, amount: 1-2, chance: 0.4 }
+
+end-message: "<green><bold>Escalation conquered!</bold>"
+fail-message: "<red>It escalated beyond you..."

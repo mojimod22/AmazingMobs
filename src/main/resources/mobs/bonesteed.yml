@@ -1,0 +1,28 @@
+# MOUNT UNIT · a skeletal steed. Drives the whole mounted stack toward players (the mount moves,
+# the rider attacks) and hardens whoever rides it via the 'carrier' trait.
+id: bonesteed
+name: "<gray>Bonesteed</gray>"
+lore: ["<gray>It does not tire."]
+type: SKELETON_HORSE
+tier: UNCOMMON
+category: mount
+tags: [undead, mount]
+stats:
+  health: 70
+  damage: 0
+  speed: 0.5
+  armor: 4
+  follow-range: 44
+  burns-in-day: false
+ai:
+  aggression: AGGRESSIVE
+  movement: CHASE
+  aggro-range: 44
+traits:
+  - { trait: hunter, drive: true, drive-power: 0.3, reach: 2.5 }
+  - { trait: carrier, resistance: 0, speed: 0 }
+drops:
+  xp: 6-12
+  items:
+    - { material: BONE, amount: 1-3, chance: 0.5 }
+scaling: { health-per-player: 0.1, max-players: 8 }

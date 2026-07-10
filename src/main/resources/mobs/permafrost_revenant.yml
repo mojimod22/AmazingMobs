@@ -1,0 +1,69 @@
+# Archetype: ICE SPECIALIST — snowball barrages that chill; resists cold, melts under fire.
+# Tactical role: ranged slow-stacker. Clear weakness (fire) rewards prepared players.
+id: permafrost_revenant
+name: "<gradient:#81d4fa:#e1f5fe>Permafrost Revenant</gradient>"
+lore:
+  - "<aqua>A wraith of endless winter."
+type: STRAY
+tier: RARE
+category: ice
+tags: [ice, ranged]
+
+stats:
+  health: 60
+  damage: 4
+  speed: 0.27
+  armor: 3
+  follow-range: 46
+  damage-multipliers:
+    fire: 2.0          # melts fast to fire — its glaring weakness
+    projectile: 1.0
+    freeze: 0.0
+
+ai:
+  aggression: AGGRESSIVE
+  movement: KITE
+  target-priority: [NEAREST]
+  aggro-range: 46
+  kite-distance: 13
+
+skills:
+  - skill: snowball
+    label: "Frost Volley"
+    trigger:
+      types: [TICK]
+      cooldown: 2s
+      min-range: 5
+      max-range: 40
+      chance: 0.9
+    params:
+      type: snowball
+      count: 3
+      spread: 0.12
+      speed: 1.4
+      sound: entity_snowball_throw
+  - skill: slow
+    label: "Numbing Cold"
+    trigger:
+      types: [ON_ATTACK]
+      cooldown: 3s
+      target: TARGET
+      duration: 4s
+    params:
+      effects:
+        - { type: slowness, amplifier: 1 }
+
+drops:
+  xp: 18-36
+  items:
+    - { material: SNOWBALL, amount: 4-8, chance: 0.6 }
+    - { material: PACKED_ICE, amount: 1-2, chance: 0.4 }
+
+presentation:
+  glow: false
+  ambient-particle: snowflake
+
+scaling:
+  health-per-player: 0.08
+  damage-per-player: 0.05
+  max-players: 8

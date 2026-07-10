@@ -1,0 +1,86 @@
+# Archetype: MELEE TANK — slow, durable frontline that controls space with ground slams.
+# Tactical role: soaks damage and scatters clustered players; weak to kiting/ranged.
+id: bonecrusher_juggernaut
+name: "<gradient:#9e9e9e:#e0e0e0>Bonecrusher Juggernaut</gradient>"
+lore:
+  - "<gray>An armoured horror that crushes anything underfoot."
+type: WITHER_SKELETON
+tier: ELITE
+category: tank
+tags: [undead, melee, frontline]
+
+stats:
+  health: 160
+  damage: 9
+  speed: 0.23
+  armor: 12
+  armor-toughness: 4
+  knockback-resistance: 0.7
+  follow-range: 40
+  attack-knockback: 0.6
+  scale: 1.25
+  damage-multipliers:
+    projectile: 1.2   # vulnerable to ranged kiting
+    fire: 0.8
+
+equipment:
+  main-hand:
+    material: NETHERITE_AXE
+    name: "<gray>Bonecrusher"
+    enchants: { sharpness: 3, knockback: 1 }
+    unbreakable: true
+    drop-chance: 0.05
+  helmet: { material: NETHERITE_HELMET, drop-chance: 0.02 }
+  chestplate: { material: NETHERITE_CHESTPLATE, enchants: { protection: 2 }, drop-chance: 0.02 }
+
+ai:
+  aggression: AGGRESSIVE
+  movement: CHASE
+  target-priority: [NEAREST]
+  aggro-range: 40
+  kite-distance: 4
+
+skills:
+  - skill: area_slam
+    label: "Seismic Slam"
+    trigger:
+      types: [TICK]
+      cooldown: 7s
+      warmup: 1s
+      max-range: 4
+      radius: 5
+      chance: 0.8
+    params:
+      damage: 8
+      knockup: 0.7
+      knockback: 0.8
+      sound: entity_ravager_attack
+      particle: block_crack
+  - skill: repel
+    label: "Bellowing Shove"
+    trigger:
+      types: [ON_DAMAGED]
+      cooldown: 12s
+      chance: 0.25
+      target: ALL_PLAYERS_IN_RADIUS
+      radius: 4
+    params:
+      power: 1.1
+      upward: 0.4
+      sound: entity_ravager_roar
+
+drops:
+  xp: 25-45
+  items:
+    - { material: IRON_INGOT, amount: 2-5, chance: 0.8 }
+    - { material: DIAMOND, amount: 1-2, chance: 0.25 }
+
+presentation:
+  glow: false
+  name-visible: true
+  ambient-sound: ""
+
+scaling:
+  health-per-player: 0.12
+  damage-per-player: 0.05
+  max-players: 8

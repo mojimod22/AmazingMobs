@@ -1,0 +1,64 @@
+# Archetype: STEALTH AMBUSHER — opens invisible, strikes from melee, poisons and fades.
+# Tactical role: surprise burst on the careless. Counter: watch for the spawn shimmer.
+id: umbral_ambusher
+name: "<gradient:#263238:#546e7a>Umbral Ambusher</gradient>"
+lore:
+  - "<dark_gray>You never see the first hit."
+type: SPIDER
+tier: RARE
+category: ambusher
+tags: [arthropod, melee, stealth]
+
+stats:
+  health: 50
+  damage: 8
+  speed: 0.33
+  follow-range: 40
+  crit-chance: 0.25
+  crit-multiplier: 2.0
+
+ai:
+  aggression: AGGRESSIVE
+  movement: AMBUSH
+  target-priority: [RANDOM, LOWEST_HEALTH]
+  aggro-range: 40
+
+skills:
+  - skill: vanish
+    label: "Ambush"
+    trigger:
+      types: [ON_SPAWN]
+      duration: 5s
+    params:
+      particle: large_smoke
+  - skill: poison
+    label: "Venom Fangs"
+    trigger:
+      types: [ON_ATTACK]
+      cooldown: 2s
+      target: TARGET
+      duration: 6s
+    params:
+      effects:
+        - { type: poison, amplifier: 1 }
+  - skill: vanish
+    label: "Slip Away"
+    trigger:
+      types: [ON_DAMAGED]
+      cooldown: 12s
+      chance: 0.3
+      duration: 2s
+
+drops:
+  xp: 18-36
+  items:
+    - { material: SPIDER_EYE, amount: 1-2, chance: 0.6 }
+    - { material: STRING, amount: 2-4, chance: 0.5 }
+
+presentation:
+  ambient-particle: smoke
+
+scaling:
+  health-per-player: 0.08
+  damage-per-player: 0.06
+  max-players: 8

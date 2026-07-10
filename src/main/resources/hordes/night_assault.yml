@@ -1,0 +1,57 @@
+# NIGHT ASSAULT · only triggers after dark; a broad mixed-undead push with a heavy finale.
+id: night_assault
+name: "<dark_blue>Night Assault</dark_blue>"
+description: "Darkness emboldens them. They come in force."
+difficulty: 1.35
+duration: 9m
+cooldown: 20m
+
+area:
+  shape: SPHERE
+  radius: 75
+  dynamic: true
+
+spawn:
+  max-per-tick: 8
+  max-mobs: 70
+  min-player-distance: 12
+  attempts: 28
+
+activation:
+  min-players: 1
+  max-players: 10
+  time-min: 13500
+  time-max: 22500
+
+start-title: "<dark_blue><bold>Night Assault</bold></dark_blue>"
+start-subtitle: "<gray>They were waiting for the dark</gray>"
+sound: entity_wither_ambient
+
+waves:
+  - label: "Vanguard"
+    start-delay: 3s
+    mobs:
+      - { mob: zombie_grunt, count: 8-12, per-player: 3 }
+      - { mob: skeletal_grunt, count: 4-6, per-player: 2 }
+  - label: "Reavers"
+    start-delay: 5s
+    mobs:
+      - { mob: husk_marauder, count: 5-7, per-player: 2 }
+      - { mob: nightshade_stalker, count: 1-2, per-player: 1, role: elite }
+  - label: "The Bonecrusher"
+    start-delay: 5s
+    clear-threshold: 1.0
+    title: "<dark_blue>A Bonecrusher leads the charge</dark_blue>"
+    mobs:
+      - { mob: bonecrusher_juggernaut, count: 1-2, per-player: 1, role: boss, boss: true }
+      - { mob: husk_marauder, count: 4-6, per-player: 2 }
+
+rewards:
+  xp: 180-330
+  message: "<green>Dawn comes. You survived the night."
+  items:
+    - { material: DIAMOND, amount: 2-4, chance: 0.7 }
+    - { material: GOLDEN_APPLE, amount: 1-2, chance: 0.4 }
+
+end-message: "<green><bold>The Night Assault is repelled!</bold>"
+fail-message: "<red>The night took the field..."

@@ -1,0 +1,56 @@
+# EARLY/MID · NIGHT · classic undead night assault, capped by a Grave Warden elite.
+id: restless_dead
+name: "<dark_green>The Restless Dead</dark_green>"
+description: "When the sun sets, the buried do not stay buried."
+difficulty: 1.0
+duration: 7m
+cooldown: 15m
+
+area:
+  shape: SPHERE
+  radius: 70
+  dynamic: true
+
+spawn:
+  max-per-tick: 7
+  max-mobs: 55
+  min-player-distance: 12
+  attempts: 28
+
+activation:
+  min-players: 1
+  max-players: 8
+  time-min: 13000
+  time-max: 23000
+
+start-title: "<dark_green><bold>The Restless Dead</bold></dark_green>"
+start-subtitle: "<gray>Something stirs in the dark</gray>"
+sound: entity_zombie_ambient
+
+waves:
+  - label: "Shamblers"
+    start-delay: 3s
+    mobs:
+      - { mob: zombie_grunt, count: 8-12, per-player: 3 }
+  - label: "Bonecallers"
+    start-delay: 6s
+    mobs:
+      - { mob: skeletal_grunt, count: 5-7, per-player: 2 }
+      - { mob: husk_marauder, count: 2-3, per-player: 1 }
+  - label: "The Warden"
+    start-delay: 4s
+    clear-threshold: 1.0
+    title: "<dark_green>A Warden rises</dark_green>"
+    mobs:
+      - { mob: grave_warden, count: 1, role: elite, boss: true }
+      - { mob: zombie_grunt, count: 4-6, per-player: 2 }
+
+rewards:
+  xp: 90-160
+  message: "<green>Dawn breaks. The dead sink back into the earth."
+  items:
+    - { material: DIAMOND, amount: 1-2, chance: 0.5 }
+    - { material: GOLDEN_CARROT, amount: 4-8, chance: 0.6 }
+
+end-message: "<green><bold>The Restless Dead are quelled.</bold>"
+fail-message: "<red>The dead claimed the night..."

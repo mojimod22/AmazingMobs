@@ -1,0 +1,45 @@
+# SKY MENACE · everything that flies, all at once — bats and harpies. Keep moving, keep your bow up.
+id: sky_menace
+name: "<color:#80deea><bold>Sky Menace</bold></color>"
+description: "Death has wings tonight."
+difficulty: 1.4
+duration: 8m
+cooldown: 22m
+
+area: { shape: SPHERE, radius: 70, dynamic: true }
+spawn: { max-per-tick: 10, max-mobs: 80, min-player-distance: 14, attempts: 30 }
+activation: { min-players: 1, max-players: 10 }
+
+start-title: "<color:#80deea><bold>Sky Menace</bold></color>"
+start-subtitle: "<gray>Look up</gray>"
+sound: entity_phantom_ambient
+
+waves:
+  - label: "Winged Scouts"
+    start-delay: 3s
+    mobs:
+      - { mob: echo_bat, count: 6-8, per-player: 2 }
+      - { mob: gale_harpy, count: 3-4, per-player: 1 }
+  - label: "Aerial Assault"
+    start-delay: 5s
+    mobs:
+      - { mob: gale_harpy, count: 5-7, per-player: 2 }
+      - { mob: storm_bat, count: 2-3, per-player: 1, role: elite }
+      - { mob: hex_bat, count: 3-5, per-player: 1 }
+  - label: "Winged Terror"
+    start-delay: 5s
+    clear-threshold: 0.9
+    title: "<color:#80deea>The flock turns on you</color>"
+    mobs:
+      - { mob: gale_harpy, count: 6-8, per-player: 2, role: elite }
+      - { mob: storm_bat, count: 3-4, per-player: 1, role: elite }
+
+rewards:
+  xp: 170-310
+  message: "<green>The skies fall silent."
+  items:
+    - { material: PHANTOM_MEMBRANE, amount: 3-6, chance: 0.8 }
+    - { material: ARROW, amount: 16-32, chance: 0.7 }
+
+end-message: "<green><bold>Sky Menace grounded!</bold>"
+fail-message: "<red>Torn apart from above..."

@@ -1,0 +1,57 @@
+# SWARM · AMBUSH · waves of skittering bodies building to the Broodmother.
+id: spider_infestation
+name: "<dark_gray>Spider Infestation</dark_gray>"
+description: "The walls are moving. They were never walls."
+difficulty: 1.1
+duration: 7m
+cooldown: 18m
+
+area:
+  shape: CYLINDER
+  radius: 55
+  height: 25
+  dynamic: true
+
+spawn:
+  max-per-tick: 10
+  max-mobs: 70
+  min-player-distance: 8
+  attempts: 24
+
+activation:
+  min-players: 1
+  max-players: 8
+
+start-title: "<dark_gray><bold>Spider Infestation</bold></dark_gray>"
+start-subtitle: "<gray>Something scuttles closer</gray>"
+sound: entity_spider_ambient
+
+waves:
+  - label: "Skitterlings"
+    start-delay: 2s
+    clear-threshold: 0.85
+    mobs:
+      - { mob: spiderling, count: 10-14, per-player: 4 }
+  - label: "Ambush"
+    start-delay: 4s
+    mobs:
+      - { mob: spiderling, count: 8-10, per-player: 3 }
+      - { mob: umbral_ambusher, count: 2-3, per-player: 1, role: elite }
+  - label: "The Broodmother"
+    start-delay: 5s
+    clear-threshold: 1.0
+    title: "<dark_red>The Broodmother descends</dark_red>"
+    subtitle: "<gray>Mind her children</gray>"
+    sound: entity_spider_death
+    mobs:
+      - { mob: broodmother, count: 1, role: boss, boss: true }
+
+rewards:
+  xp: 120-220
+  message: "<green>The nest is burned out."
+  items:
+    - { material: STRING, amount: 8-16, chance: 1.0 }
+    - { material: EMERALD, amount: 1-3, chance: 0.5 }
+
+end-message: "<green><bold>Infestation cleared!</bold>"
+fail-message: "<red>The brood overwhelms you..."

@@ -1,0 +1,71 @@
+# SURVIVAL GAUNTLET · six escalating waves, no respite. A pure endurance check.
+id: survival_gauntlet
+name: "<red>Survival Gauntlet</red>"
+description: "Six waves. No breaks. How long can you last?"
+difficulty: 1.5
+duration: 14m
+cooldown: 25m
+
+area:
+  shape: CYLINDER
+  radius: 60
+  height: 30
+  dynamic: true
+
+spawn:
+  max-per-tick: 9
+  max-mobs: 80
+  min-player-distance: 10
+  attempts: 26
+
+activation:
+  min-players: 1
+  max-players: 10
+
+start-title: "<red><bold>Survival Gauntlet</bold></red>"
+start-subtitle: "<gray>Six waves stand between you and glory</gray>"
+sound: entity_wither_spawn
+
+waves:
+  - label: "Wave 1 — Fodder"
+    start-delay: 3s
+    mobs:
+      - { mob: zombie_grunt, count: 8-10, per-player: 2 }
+  - label: "Wave 2 — Archers"
+    start-delay: 3s
+    mobs:
+      - { mob: skeletal_grunt, count: 6-8, per-player: 2 }
+  - label: "Wave 3 — Skirmishers"
+    start-delay: 3s
+    mobs:
+      - { mob: spiderling, count: 8-10, per-player: 3 }
+      - { mob: umbral_ambusher, count: 1-2, per-player: 1 }
+  - label: "Wave 4 — Casters"
+    start-delay: 3s
+    mobs:
+      - { mob: ember_magus, count: 2-3, per-player: 1 }
+      - { mob: permafrost_revenant, count: 2-3, per-player: 1 }
+  - label: "Wave 5 — Heavies"
+    start-delay: 3s
+    mobs:
+      - { mob: bonecrusher_juggernaut, count: 1-2, per-player: 1, role: elite }
+      - { mob: granite_brute, count: 1-2, per-player: 1, role: elite }
+  - label: "Wave 6 — The Pack Leaders"
+    start-delay: 4s
+    clear-threshold: 1.0
+    title: "<red>Final Wave</red>"
+    mobs:
+      - { mob: void_phantom, count: 1-2, per-player: 1, role: elite }
+      - { mob: nightshade_stalker, count: 1-2, per-player: 1, role: elite }
+      - { mob: verdant_mender, count: 1, per-player: 1, role: elite }
+
+rewards:
+  xp: 300-540
+  message: "<green>You outlasted them all."
+  items:
+    - { material: DIAMOND, amount: 3-7, chance: 0.9 }
+    - { material: NETHERITE_SCRAP, amount: 1-2, chance: 0.3 }
+    - { material: EXPERIENCE_BOTTLE, amount: 8-16, chance: 0.7 }
+
+end-message: "<green><bold>Gauntlet survived!</bold>"
+fail-message: "<red>The gauntlet claims another..."

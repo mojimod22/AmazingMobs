@@ -1,0 +1,46 @@
+# BATTLEFIELD OBJECTIVE · a bloated, hovering nest that endlessly births bats. Destroy it to stop
+# the swarm. Pairs with cave/eclipse hordes as an objective.
+id: bat_nest
+name: "<dark_gray><bold>Bat Nest</bold></dark_gray>"
+lore: ["<gray>It pulses, and the dark takes wing."]
+type: BAT
+tier: MINIBOSS
+category: objective
+tags: [objective, structure, bat]
+
+stats:
+  health: 140
+  damage: 0
+  armor: 4
+  knockback-immune: true
+  fall-immune: true
+  scale: 3.0
+  follow-range: 40
+
+ai:
+  aggression: AGGRESSIVE
+  movement: STATIONARY
+  clear-vanilla-goals: true     # stop erratic flight; hover in place
+
+skills:
+  - skill: summon
+    label: "Hatch Brood"
+    trigger: { types: [TICK], cooldown: 5s, chance: 1.0 }
+    params: { mob: swarm_bat, count: 3-4, spread: 4, sound: entity_bat_takeoff }
+
+drops:
+  xp: 60-100
+  items:
+    - { material: PHANTOM_MEMBRANE, amount: 2-4, chance: 0.7 }
+
+presentation:
+  glow: true
+  glow-color: DARK_PURPLE
+  boss-bar: true
+  boss-bar-color: PURPLE
+  boss-bar-title: "<dark_gray>Bat Nest"
+  ambient-particle: large_smoke
+
+scaling:
+  health-per-player: 0.18
+  max-players: 10

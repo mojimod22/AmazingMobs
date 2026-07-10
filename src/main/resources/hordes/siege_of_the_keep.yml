@@ -1,0 +1,70 @@
+# SIEGE · long, grinding push of frontline heavies. A test of stamina and positioning.
+id: siege_of_the_keep
+name: "<color:#bcaaa4>Siege of the Keep</color>"
+description: "Wave after wave of armoured bodies hammer your walls."
+difficulty: 1.5
+duration: 12m
+cooldown: 30m
+
+area:
+  shape: CUBE
+  radius: 70
+  height: 30
+  dynamic: true
+
+spawn:
+  max-per-tick: 8
+  max-mobs: 80
+  min-player-distance: 12
+  attempts: 28
+
+activation:
+  min-players: 2
+  max-players: 10
+
+start-title: "<color:#bcaaa4><bold>Siege of the Keep</bold></color>"
+start-subtitle: "<gray>The first ranks crash against you</gray>"
+sound: entity_ravager_roar
+
+waves:
+  - label: "The Rabble"
+    start-delay: 3s
+    mobs:
+      - { mob: zombie_grunt, count: 10-14, per-player: 3 }
+      - { mob: husk_marauder, count: 3-4, per-player: 1 }
+  - label: "Shieldwall"
+    start-delay: 6s
+    mobs:
+      - { mob: aegis_sentinel, count: 2-3, per-player: 1, role: elite }
+      - { mob: husk_marauder, count: 5-7, per-player: 2 }
+  - label: "Battering Ram"
+    start-delay: 6s
+    mobs:
+      - { mob: granite_brute, count: 2-3, per-player: 1, role: elite }
+      - { mob: bonecrusher_juggernaut, count: 1-2, per-player: 1, role: elite }
+  - label: "Siege Engines"
+    start-delay: 6s
+    title: "<color:#bcaaa4>Destroy their siege totems!</color>"
+    subtitle: "<gray>They reinforce the breach until you do</gray>"
+    mobs:
+      - { mob: spawner_totem, count: 1, objective: true }
+      - { mob: ritual_anchor, count: 1, objective: true }
+      - { mob: husk_marauder, count: 4-6, per-player: 2 }
+  - label: "The Breach"
+    start-delay: 6s
+    clear-threshold: 1.0
+    title: "<color:#bcaaa4>The Warlord leads the breach</color>"
+    mobs:
+      - { mob: iron_warlord, count: 1, role: boss, boss: true }
+      - { mob: aegis_sentinel, count: 1-2, per-player: 1, role: elite }
+
+rewards:
+  xp: 260-480
+  message: "<green>The keep holds. The siege is broken."
+  items:
+    - { material: IRON_BLOCK, amount: 3-6, chance: 0.9 }
+    - { material: DIAMOND, amount: 2-5, chance: 0.7 }
+    - { material: NETHERITE_SCRAP, amount: 1-2, chance: 0.2 }
+
+end-message: "<green><bold>The Siege of the Keep is repelled!</bold>"
+fail-message: "<red>The walls are breached. The keep falls."

@@ -1,0 +1,80 @@
+# Archetype: THUNDER SPECIALIST — calls lightning on clustered players, repositions fast.
+# Tactical role: bursty ranged punisher of stacked groups. Counter: spread out.
+id: storm_herald
+name: "<gradient:#fff176:#fffde7>Storm Herald</gradient>"
+lore:
+  - "<yellow>It speaks, and the sky answers."
+type: SKELETON
+tier: ELITE
+category: thunder
+tags: [thunder, caster, ranged]
+
+stats:
+  health: 80
+  damage: 5
+  speed: 0.28
+  armor: 4
+  follow-range: 48
+  burns-in-day: false
+
+equipment:
+  main-hand: { material: GOLDEN_SWORD, enchants: { sharpness: 2 }, glow: true, drop-chance: 0.05 }
+
+ai:
+  aggression: AGGRESSIVE
+  movement: STRAFE
+  target-priority: [NEAREST]
+  aggro-range: 48
+
+skills:
+  - skill: thunder
+    label: "Call Lightning"
+    trigger:
+      types: [TICK]
+      cooldown: 5s
+      target: ALL_PLAYERS_IN_RADIUS
+      radius: 6
+      min-range: 4
+      max-range: 40
+      chance: 0.8
+    params:
+      damage: 4
+      sound: entity_lightning_bolt_thunder
+  - skill: hasten
+    label: "Stormstep"
+    trigger:
+      types: [ON_DAMAGED]
+      cooldown: 10s
+      target: SELF
+      duration: 5s
+      chance: 0.4
+    params:
+      effects:
+        - { type: speed, amplifier: 1 }
+  - skill: dash
+    label: "Bolt Away"
+    trigger:
+      types: [TICK]
+      cooldown: 7s
+      min-range: 0
+      max-range: 6
+      chance: 0.5
+    params:
+      power: 1.4
+      upward: 0.3
+
+drops:
+  xp: 28-52
+  items:
+    - { material: GOLD_INGOT, amount: 1-3, chance: 0.5 }
+    - { material: LIGHTNING_ROD, amount: 1, chance: 0.2 }
+
+presentation:
+  glow: true
+  glow-color: YELLOW
+  ambient-particle: electric_spark
+
+scaling:
+  health-per-player: 0.1
+  damage-per-player: 0.04
+  max-players: 8

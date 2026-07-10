@@ -1,0 +1,60 @@
+# ENDURANCE / INFINITE · waves loop until the time cap or the players fall. Scales with player count.
+# 'infinite: true' restarts the wave list after the last wave; the duration cap ends it.
+id: endurance_trial
+name: "<color:#26a69a>Endurance Trial</color>"
+description: "Survive as long as you can. The waves never truly stop."
+difficulty: 1.4
+duration: 15m       # hard time cap — survive to here to 'win'
+cooldown: 30m
+infinite: true
+
+area:
+  shape: CYLINDER
+  radius: 55
+  height: 25
+  dynamic: true
+
+spawn:
+  max-per-tick: 9
+  max-mobs: 85
+  min-player-distance: 10
+  attempts: 24
+
+activation:
+  min-players: 1
+  max-players: 12
+
+start-title: "<color:#26a69a><bold>Endurance Trial</bold></color>"
+start-subtitle: "<gray>Last as long as you can</gray>"
+sound: entity_wither_ambient
+
+waves:
+  - label: "Cycle A"
+    start-delay: 3s
+    clear-threshold: 0.8
+    mobs:
+      - { mob: zombie_grunt, count: 8-10, per-player: 3 }
+      - { mob: skeletal_grunt, count: 4-6, per-player: 2 }
+  - label: "Cycle B"
+    start-delay: 4s
+    clear-threshold: 0.8
+    mobs:
+      - { mob: spiderling, count: 8-10, per-player: 3 }
+      - { mob: ember_magus, count: 1-2, per-player: 1 }
+  - label: "Cycle C"
+    start-delay: 4s
+    clear-threshold: 0.85
+    mobs:
+      - { mob: husk_marauder, count: 5-7, per-player: 2 }
+      - { mob: nightshade_stalker, count: 1, per-player: 1, role: elite }
+      - { mob: bonecrusher_juggernaut, count: 1, per-player: 1, role: elite }
+
+rewards:
+  xp: 300-600
+  message: "<green>You endured to the end of the trial."
+  items:
+    - { material: DIAMOND, amount: 3-6, chance: 0.8 }
+    - { material: EXPERIENCE_BOTTLE, amount: 12-24, chance: 0.8 }
+
+end-message: "<green><bold>Endurance Trial survived!</bold>"
+fail-message: "<red>Endurance has its limits..."

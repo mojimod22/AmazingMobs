@@ -1,0 +1,56 @@
+# MAGIC / SUMMONER · endless undead unless you reach the necromancers. Kill the casters first.
+id: necromancers_rising
+name: "<dark_purple>Necromancers Rising</dark_purple>"
+description: "Cut down the bodies all you like — the casters make more."
+difficulty: 1.45
+duration: 9m
+cooldown: 25m
+
+area:
+  shape: CYLINDER
+  radius: 65
+  height: 30
+  dynamic: true
+
+spawn:
+  max-per-tick: 9
+  max-mobs: 75
+  min-player-distance: 12
+  attempts: 26
+
+activation:
+  min-players: 1
+  max-players: 8
+
+start-title: "<dark_purple><bold>Necromancers Rising</bold></dark_purple>"
+start-subtitle: "<gray>The dead are being called</gray>"
+sound: entity_evoker_prepare_summon
+
+waves:
+  - label: "Risen"
+    start-delay: 3s
+    mobs:
+      - { mob: skeletal_grunt, count: 6-8, per-player: 2 }
+      - { mob: grave_warden, count: 1-2, per-player: 1, role: elite }
+  - label: "The Conclave"
+    start-delay: 5s
+    mobs:
+      - { mob: bonelord_necromancer, count: 2-3, per-player: 1, role: elite }
+      - { mob: skeletal_grunt, count: 4-6, per-player: 2 }
+  - label: "The Bonelord"
+    start-delay: 5s
+    clear-threshold: 1.0
+    title: "<dark_purple>The Bonelord asserts dominion</dark_purple>"
+    mobs:
+      - { mob: bonelord_necromancer, count: 1, role: boss, boss: true }
+      - { mob: grave_warden, count: 1, per-player: 1, role: elite }
+
+rewards:
+  xp: 190-340
+  message: "<green>The chanting stops. The dead lie still."
+  items:
+    - { material: BONE_BLOCK, amount: 1-3, chance: 0.6 }
+    - { material: TOTEM_OF_UNDYING, amount: 1, chance: 0.12 }
+
+end-message: "<green><bold>The Necromancers fall silent!</bold>"
+fail-message: "<red>The horde is endless. You fall."

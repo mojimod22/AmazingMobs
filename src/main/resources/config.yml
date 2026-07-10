@@ -1,0 +1,63 @@
+# ============================================================================
+#  AmazingMobs — main configuration
+#  All values are hot-reloadable with /am reload (performance knobs apply on
+#  the next server start, since they size the scheduled tasks).
+# ============================================================================
+
+# Config schema version. Leave as-is; the plugin warns (and falls back to safe defaults) if a newer
+# build introduces keys your file predates. Bumped when new top-level options are added.
+config-version: 2
+
+# Print extra diagnostics to the console.
+debug: false
+
+performance:
+  # Ticks between custom-mob controller passes (target re-acquire, look-at, re-path, skills).
+  # Lower = snappier pursuit but more CPU; higher = cheaper. 5 (0.25s) keeps chases responsive;
+  # raise toward 8-10 only if a very large server needs the headroom.
+  mob-controller-period: 5
+
+  # Hard ceiling on simultaneously tracked custom mobs (server-wide). Spawns are
+  # refused past this to protect TPS. Raise carefully on strong hardware.
+  max-active-mobs: 300
+
+  # Ticks between horde state-machine passes; also how often spawn batches fire.
+  horde-tick-interval: 10
+
+  # Max simultaneous horde events across the server.
+  max-concurrent-hordes: 3
+
+horde:
+  # When a horde starts: full-heal every online player, reset their oxygen/fire/fall/food, clear
+  # inventory+armor, and hand out the standard battle kit (netherite gear + sword + gapples + potions
+  # + totems). Server-wide for now. Set false to leave player inventories untouched.
+  equip-all-players-on-start: true
+
+# Weight progression (RPG). Universal per-player stat that grows with kills, granting more hearts,
+# strength and (slight) speed. Reach the goal, then /am prestige to reset and gain a permanent tier.
+weight:
+  enabled: true
+  base-kg: 60        # everyone starts here; prestige resets here
+  goal-kg: 175       # reach this for max bonuses + the ability to prestige
+  decay-to-kg: 140   # if you sit at the goal too long without prestiging, you slim back down to here
+  decay-minutes: 10  # how long you may sit at the goal before decaying
+
+# Player classes (RPG). Pick a class (/am class), each with an active / special / hyper skill plus a
+# passive; skills share the universal AK-47 base. Skills scale with your Weight prestige. See
+# docs/CLASSES.md. Triggers: F = active, Shift+F = special, Shift+Q (drop) = hyper, /am skills = menu.
+classes:
+  enabled: true
+  allow-changing: true            # may players re-pick their class via /am class?
+  cooldown-multiplier: 1.0        # global multiplier on every skill cooldown (lower = snappier)
+  necromancer-minion-base-cap: 6  # max simultaneous risen minions at prestige 1
+  necromancer-minion-per-prestige: 0.5  # +this to the cap per prestige tier (0.5 = +1 every 2 prestiges)
+
+# Airburst — an always-on combat behaviour (NOT a skill): when a mob's hit launches you more than
+# `min-height` blocks above the ground and you then LAND back on your feet, a retaliatory blast goes
+# off at the landing spot. Its size scales with your Weight, prestige, launch speed and peak height; the
+# explosion damages + ignites surrounding mobs (never you), and lightning + fire stay on a safe ring at
+# a distance (never the player). Active even with no horde running.
+airburst:
+  enabled: true
+  min-height: 5.0   # blocks above the ground you must reach (from a hit) before landing to trigger
+  break-blocks: true  # TNT-grade blast that craters the terrain. Set false to keep the world intact.

@@ -1,0 +1,55 @@
+# GROWTH BEHEMOTH · a brute that GROWS huge when bloodied — bigger, stronger, terrifying.
+# Showcases the 'scale' skill (grow) on a low-health trigger.
+id: growth_behemoth
+name: "<color:#8d6e63><bold>Growth Behemoth</bold></color>"
+lore: ["<gray>Hurt it, and it only gets bigger."]
+type: RAVAGER
+tier: MINIBOSS
+category: brute
+tags: [melee, frontline, heavy]
+
+stats:
+  health: 200
+  damage: 11
+  speed: 0.3
+  armor: 10
+  knockback-resistance: 0.8
+  attack-knockback: 0.8
+  follow-range: 44
+
+ai:
+  aggression: AGGRESSIVE
+  movement: CHASE
+  aggro-range: 44
+
+traits:
+  - { trait: enrage, threshold: 0.5, strength: 1, message: "<color:#8d6e63>The Behemoth swells with rage!" }
+
+skills:
+  - skill: scale
+    label: "Grow"
+    trigger: { types: [ON_LOW_HEALTH], max-health-pct: 0.5, duration: 0 }
+    params: { size: 2.2, revert: false, particle: explosion, sound: entity_ravager_roar }
+  - skill: strike
+    trigger: { types: [TICK], cooldown: 1s, max-range: 3.5, target: TARGET }
+    params: { damage: 11, knockback: 0.6 }
+  - skill: area_slam
+    label: "Quake"
+    trigger: { types: [TICK], cooldown: 8s, warmup: 1s, max-range: 5, radius: 6, chance: 0.6 }
+    params: { damage: 9, knockup: 0.7 }
+
+drops:
+  xp: 90-160
+  items:
+    - { material: IRON_BLOCK, amount: 2-4, chance: 0.7 }
+    - { material: DIAMOND, amount: 2-4, chance: 0.5 }
+
+presentation:
+  boss-bar: true
+  boss-bar-color: RED
+  boss-bar-title: "<color:#8d6e63>Growth Behemoth"
+
+scaling:
+  health-per-player: 0.18
+  damage-per-player: 0.05
+  max-players: 8

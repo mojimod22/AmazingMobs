@@ -1,0 +1,54 @@
+# BAT MINI-BOSS · the swarm commander. Births bats, shrieks fear, and harries from the air.
+id: bat_broodmother
+name: "<dark_purple><bold>Bat Broodmother</bold></dark_purple>"
+lore: ["<gray>Mother of the night swarm."]
+type: BAT
+tier: MINIBOSS
+category: bat
+tags: [bat, flying, summoner, boss]
+stats:
+  health: 130
+  damage: 5
+  speed: 0.62
+  armor: 4
+  follow-range: 48
+  fall-immune: true
+  scale: 2.0
+  regen-per-second: 0.4
+ai:
+  aggression: AGGRESSIVE
+  movement: AMBUSH
+  aggro-range: 48
+  chase-speed: 1.6
+traits:
+  - { trait: enrage, threshold: 0.35, strength: 1, speed: 1, message: "<dark_purple>The Broodmother shrieks in fury!" }
+skills:
+  - skill: summon
+    label: "Birth Swarm"
+    trigger: { types: [TICK], cooldown: 7s, chance: 0.9 }
+    params: { mob: swarm_bat, count: 3-5, spread: 4, sound: entity_bat_takeoff }
+  - skill: strike
+    trigger: { types: [TICK], cooldown: 1s, max-range: 3.0, target: TARGET }
+    params: { damage: 5 }
+  - skill: fear
+    label: "Deafening Shriek"
+    trigger: { types: [TICK], cooldown: 8s, target: ALL_PLAYERS_IN_RADIUS, radius: 8, duration: 4s, chance: 0.7 }
+  - skill: blind
+    label: "Veil"
+    trigger: { types: [ON_LOW_HEALTH], max-health-pct: 0.5, target: ALL_PLAYERS_IN_RADIUS, radius: 10, duration: 3s }
+drops:
+  xp: 70-130
+  items:
+    - { material: PHANTOM_MEMBRANE, amount: 3-6, chance: 0.9 }
+    - { material: ECHO_SHARD, amount: 1-2, chance: 0.3 }
+presentation:
+  glow: true
+  glow-color: DARK_PURPLE
+  boss-bar: true
+  boss-bar-color: PURPLE
+  boss-bar-title: "<dark_purple><bold>Bat Broodmother</bold></dark_purple>"
+  ambient-particle: large_smoke
+scaling:
+  health-per-player: 0.16
+  damage-per-player: 0.04
+  max-players: 8

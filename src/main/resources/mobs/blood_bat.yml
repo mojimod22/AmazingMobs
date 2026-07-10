@@ -1,0 +1,31 @@
+# BAT ECLIPSE · the leech. Heals itself off every bite — kill it fast or it never dies.
+id: blood_bat
+name: "<dark_red>Blood Bat</dark_red>"
+lore: ["<gray>It drinks deep."]
+type: BAT
+tier: RARE
+category: bat
+tags: [bat, flying, sustain, swarm]
+stats:
+  health: 22
+  damage: 4
+  speed: 0.62
+  follow-range: 40
+  fall-immune: true
+ai:
+  aggression: AGGRESSIVE
+  movement: AMBUSH
+  aggro-range: 40
+  chase-speed: 2.0
+traits:
+  - { trait: hunter, drive: true, drive-power: 0.24, reach: 2.5 }
+  - { trait: vampire, heal: 3, weaken: false }
+skills:
+  - skill: strike
+    trigger: { types: [TICK], cooldown: 1s, max-range: 2.5, target: TARGET }
+    params: { damage: 4 }
+drops:
+  xp: 4-8
+  items:
+    - { material: REDSTONE, amount: 1-2, chance: 0.4 }
+scaling: { health-per-player: 0.07, max-players: 8 }

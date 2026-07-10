@@ -1,0 +1,32 @@
+# BAT · dives onto you and detonates on death — forces you to kill it at a distance or eat the blast.
+id: bomber_bat
+name: "<color:#ff7043>Bomber Bat</color>"
+lore: ["<gray>You hear the fuse before you see it."]
+type: BAT
+tier: RARE
+category: bat
+tags: [bat, flying, exploder]
+stats:
+  health: 18
+  damage: 3
+  speed: 0.62
+  follow-range: 42
+  fall-immune: true
+ai:
+  aggression: AGGRESSIVE
+  movement: AMBUSH
+  aggro-range: 42
+  chase-speed: 2.1
+traits:
+  - { trait: exploder, radius: 3, damage: 6, knockback: 0.8, fire: false }
+skills:
+  - skill: strike
+    trigger: { types: [TICK], cooldown: 1s, max-range: 2.4, target: TARGET }
+    params: { damage: 3 }
+presentation:
+  glow: true
+  glow-color: RED
+  ambient-particle: flame
+drops:
+  xp: 4-8
+scaling: { health-per-player: 0.06, max-players: 8 }

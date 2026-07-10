@@ -1,0 +1,81 @@
+# Archetype: SUMMONER — conjures waves of minions; dangerous if left alone.
+# Tactical role: endless bodies. Synergy: feeds swarm pressure; counter: rush it down.
+id: bonelord_necromancer
+name: "<gradient:#4a148c:#7b1fa2>Bonelord Necromancer</gradient>"
+lore:
+  - "<dark_purple>Death is merely a recruitment drive."
+type: EVOKER
+tier: ELITE
+category: summoner
+tags: [undead, caster, summoner, backline]
+
+stats:
+  health: 90
+  damage: 3
+  speed: 0.24
+  armor: 4
+  follow-range: 40
+  damage-multipliers:
+    projectile: 1.15
+
+ai:
+  aggression: DEFENSIVE
+  movement: KITE
+  target-priority: [NEAREST]
+  aggro-range: 36
+  kite-distance: 16
+  retreat-health-pct: 0.35
+
+skills:
+  - skill: summon
+    label: "Raise Dead"
+    trigger:
+      types: [TICK]
+      cooldown: 9s
+      chance: 0.9
+      max-range: 40
+    params:
+      mob: skeletal_grunt
+      count: 2-3
+      spread: 4
+      sound: entity_evoker_prepare_summon
+      particle: soul
+  - skill: wither
+    label: "Grave Chill"
+    trigger:
+      types: [TICK]
+      cooldown: 6s
+      target: NEAREST_PLAYER
+      max-range: 24
+      duration: 4s
+      chance: 0.6
+    params:
+      effects:
+        - { type: wither, amplifier: 0 }
+        - { type: slowness, amplifier: 0 }
+  - skill: blink
+    label: "Phase"
+    trigger:
+      types: [ON_DAMAGED]
+      cooldown: 8s
+      chance: 0.4
+    params:
+      mode: away_from_target
+      distance: 6
+
+drops:
+  xp: 30-55
+  items:
+    - { material: BONE, amount: 3-6, chance: 0.8 }
+    - { material: TOTEM_OF_UNDYING, amount: 1, chance: 0.08 }
+
+presentation:
+  glow: true
+  glow-color: DARK_PURPLE
+  boss-bar: false
+  ambient-particle: soul
+
+scaling:
+  health-per-player: 0.1
+  damage-per-player: 0.03
+  max-players: 8

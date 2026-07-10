@@ -1,0 +1,58 @@
+# ELITE-HEAVY · no fodder, every mob hits hard. Quality over quantity.
+id: elite_vanguard
+name: "<light_purple>Elite Vanguard</light_purple>"
+description: "No rabble here — only the horde's finest killers."
+difficulty: 1.6
+duration: 9m
+cooldown: 28m
+
+area:
+  shape: CYLINDER
+  radius: 60
+  height: 30
+  dynamic: true
+
+spawn:
+  max-per-tick: 5
+  max-mobs: 45
+  min-player-distance: 12
+  attempts: 28
+
+activation:
+  min-players: 2
+  max-players: 10
+
+start-title: "<light_purple><bold>Elite Vanguard</bold></light_purple>"
+start-subtitle: "<gray>The finest the horde can muster</gray>"
+sound: entity_ravager_roar
+
+waves:
+  - label: "Frontline Elites"
+    start-delay: 3s
+    mobs:
+      - { mob: bonecrusher_juggernaut, count: 1-2, per-player: 1, role: elite }
+      - { mob: granite_brute, count: 1-2, per-player: 1, role: elite }
+  - label: "Caster Elites"
+    start-delay: 6s
+    mobs:
+      - { mob: frost_weaver, count: 1-2, per-player: 1, role: elite }
+      - { mob: storm_herald, count: 1-2, per-player: 1, role: elite }
+      - { mob: verdant_mender, count: 1, per-player: 1, role: elite }
+  - label: "Vanguard Lords"
+    start-delay: 6s
+    clear-threshold: 1.0
+    title: "<light_purple>The Vanguard Lords</light_purple>"
+    mobs:
+      - { mob: magma_tyrant, count: 1, role: boss, boss: true }
+      - { mob: aegis_sentinel, count: 1-2, per-player: 1, role: elite }
+
+rewards:
+  xp: 280-500
+  message: "<green>The elites lie broken. Impressive."
+  items:
+    - { material: DIAMOND_BLOCK, amount: 1, chance: 0.4 }
+    - { material: NETHERITE_SCRAP, amount: 1-2, chance: 0.35 }
+    - { material: ENCHANTED_GOLDEN_APPLE, amount: 1, chance: 0.2 }
+
+end-message: "<green><bold>Elite Vanguard annihilated!</bold>"
+fail-message: "<red>The elites were too much..."

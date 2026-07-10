@@ -1,0 +1,49 @@
+# BATTLEFIELD OBJECTIVE · a stationary spawner that pumps out minions and empowers the horde.
+# Used with a wave entry marked 'objective: true' — players MUST destroy it to advance.
+id: spawner_totem
+name: "<green><bold>Spawner Totem</bold></green>"
+lore: ["<gray>Destroy it before it buries you in bodies."]
+type: IRON_GOLEM
+tier: MINIBOSS
+category: objective
+tags: [objective, structure]
+
+stats:
+  health: 180
+  damage: 0
+  armor: 14
+  armor-toughness: 4
+  knockback-immune: true
+  follow-range: 40
+  scale: 1.1
+
+ai:
+  aggression: AGGRESSIVE
+  movement: STATIONARY
+  clear-vanilla-goals: true     # never wander — it's a fixed objective
+
+traits:
+  - { trait: ritualist, radius: 16, cooldown: 6s }   # empowers nearby horde allies
+
+skills:
+  - skill: summon
+    label: "Spawn Minions"
+    trigger: { types: [TICK], cooldown: 5s, chance: 1.0 }
+    params: { mob: zombie_grunt, count: 2-3, spread: 4, sound: entity_evoker_prepare_summon, particle: soul }
+
+drops:
+  xp: 60-100
+  items:
+    - { material: IRON_BLOCK, amount: 2-4, chance: 0.8 }
+
+presentation:
+  glow: true
+  glow-color: GREEN
+  boss-bar: true
+  boss-bar-color: GREEN
+  boss-bar-title: "<green>Spawner Totem"
+  ambient-particle: soul
+
+scaling:
+  health-per-player: 0.2
+  max-players: 10

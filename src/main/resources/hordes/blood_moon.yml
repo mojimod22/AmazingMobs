@@ -1,0 +1,74 @@
+# MEGA-EVENT · a long, multi-miniboss night under a blood moon. Server-event scale.
+id: blood_moon
+name: "<dark_red><bold>Blood Moon</bold></dark_red>"
+description: "Once in a long while, the moon turns red and everything comes at once."
+difficulty: 1.8
+duration: 16m
+cooldown: 60m
+
+area:
+  shape: CYLINDER
+  radius: 90
+  height: 45
+  dynamic: true
+
+spawn:
+  max-per-tick: 10
+  max-mobs: 110
+  min-player-distance: 12
+  attempts: 28
+
+activation:
+  min-players: 3
+  max-players: 14
+  time-min: 13000
+  time-max: 23000
+
+start-title: "<dark_red><bold>BLOOD MOON</bold></dark_red>"
+start-subtitle: "<red>The sky bleeds. Brace yourselves.</red>"
+sound: entity_wither_spawn
+
+waves:
+  - label: "Rising Tide"
+    start-delay: 4s
+    clear-threshold: 0.85
+    mobs:
+      - { mob: zombie_grunt, count: 12-16, per-player: 4 }
+      - { mob: skeletal_grunt, count: 6-8, per-player: 2 }
+      - { mob: spiderling, count: 8-10, per-player: 3 }
+  - label: "The Broodmother"
+    start-delay: 5s
+    title: "<dark_red>The Broodmother stirs</dark_red>"
+    mobs:
+      - { mob: broodmother, count: 1, role: miniboss }
+      - { mob: spiderling, count: 8-10, per-player: 3 }
+  - label: "The Warlord's Host"
+    start-delay: 6s
+    title: "<dark_red>The Iron Warlord marches</dark_red>"
+    mobs:
+      - { mob: iron_warlord, count: 1, role: miniboss }
+      - { mob: husk_marauder, count: 6-8, per-player: 2 }
+      - { mob: aegis_sentinel, count: 1-2, per-player: 1, role: elite }
+  - label: "The Dread Overlord"
+    start-delay: 7s
+    clear-threshold: 1.0
+    title: "<dark_red><bold>THE DREAD OVERLORD</bold></dark_red>"
+    subtitle: "<red>The blood moon's champion</red>"
+    sound: entity_wither_spawn
+    mobs:
+      - { mob: dread_overlord, count: 1, role: boss, boss: true }
+      - { mob: nightshade_stalker, count: 2-3, per-player: 1, role: elite }
+
+rewards:
+  xp: 700-1200
+  message: "<green>The blood moon sets. You are legends now."
+  commands:
+    - "title %player% title {\"text\":\"BLOOD MOON SURVIVOR\",\"color\":\"dark_red\",\"bold\":true}"
+  items:
+    - { material: NETHERITE_INGOT, amount: 2-4, chance: 0.8 }
+    - { material: ENCHANTED_GOLDEN_APPLE, amount: 2-4, chance: 0.7 }
+    - { material: NETHER_STAR, amount: 1-2, chance: 0.35 }
+    - { material: DIAMOND_BLOCK, amount: 1-2, chance: 0.6 }
+
+end-message: "<green><bold>The Blood Moon is conquered!</bold>"
+fail-message: "<red>The blood moon claims the realm..."

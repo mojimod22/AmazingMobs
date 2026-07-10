@@ -1,0 +1,28 @@
+# BAT · the fodder swarm body — fast, relentless, bites on contact. Numerous and annoying.
+id: swarm_bat
+name: "<dark_gray>Swarm Bat</dark_gray>"
+lore: ["<gray>Never just one."]
+type: BAT
+tier: COMMON
+category: bat
+tags: [bat, flying, swarm]
+stats:
+  health: 12
+  damage: 3
+  speed: 0.65
+  follow-range: 40
+  fall-immune: true
+ai:
+  aggression: AGGRESSIVE
+  movement: AMBUSH
+  aggro-range: 40
+  chase-speed: 2.2
+traits:
+  - { trait: pack, radius: 8, per: 0.34, max-amplifier: 2 }
+skills:
+  - skill: strike
+    trigger: { types: [TICK], cooldown: 1s, max-range: 2.4, target: TARGET }
+    params: { damage: 3, knockback: 0.1 }
+drops:
+  xp: 2-4
+scaling: { health-per-player: 0.05, max-players: 8 }

@@ -1,0 +1,75 @@
+# Archetype: RANGED CASTER — keeps distance and rains fire; fragile in melee.
+# Tactical role: backline pressure; punishes players who ignore it. Synergy: pairs with tanks.
+id: ember_magus
+name: "<gradient:#ff6a00:#ffd000>Ember Magus</gradient>"
+lore:
+  - "<gold>A smouldering caster wreathed in living flame."
+type: BLAZE
+tier: RARE
+category: caster
+tags: [fire, ranged, backline]
+
+stats:
+  health: 55
+  damage: 4
+  speed: 0.25
+  armor: 2
+  follow-range: 48
+  fire-immune: true
+  knockback-resistance: 0.1
+  damage-multipliers:
+    fire: 0.0          # immune to its own element
+    projectile: 1.25   # squishy to arrows
+
+ai:
+  aggression: AGGRESSIVE
+  movement: KITE
+  target-priority: [NEAREST]
+  aggro-range: 45
+  kite-distance: 12
+  retreat-health-pct: 0.25
+
+skills:
+  - skill: fireball
+    label: "Emberbolt"
+    trigger:
+      types: [TICK]
+      cooldown: 3s
+      min-range: 6
+      max-range: 40
+      chance: 0.9
+    params:
+      type: small_fireball
+      count: 1
+      speed: 1.4
+      incendiary: true
+      sound: entity_blaze_shoot
+  - skill: fireball
+    label: "Infernal Volley"
+    trigger:
+      types: [ON_LOW_HEALTH]
+      cooldown: 1s
+      max-health-pct: 0.4
+      max-range: 40
+    params:
+      type: small_fireball
+      count: 5
+      spread: 0.18
+      speed: 1.3
+      incendiary: true
+      sound: entity_blaze_shoot
+
+drops:
+  xp: 15-30
+  items:
+    - { material: BLAZE_ROD, amount: 1-2, chance: 0.7 }
+    - { material: FIRE_CHARGE, amount: 2-4, chance: 0.4 }
+
+presentation:
+  glow: false
+  ambient-particle: flame
+
+scaling:
+  health-per-player: 0.08
+  damage-per-player: 0.06
+  max-players: 8

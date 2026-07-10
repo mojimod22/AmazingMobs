@@ -1,0 +1,103 @@
+# ROYAL POULTRY WAR · the boss. Summons the flock and HURLS chickens at players (mob-as-projectile).
+# Showcases launch_mob, phase-gated skills, summon, and a boss bar — a deliberately absurd, memorable finale.
+id: chicken_king
+name: "<gradient:#ffd700:#ff8c00><bold>The Chicken King</bold></gradient>"
+lore:
+  - "<gold>Bow before the throne of feathers."
+type: CHICKEN
+tier: BOSS
+category: boss
+tags: [chicken, boss, finale]
+
+stats:
+  health: 260
+  damage: 8
+  speed: 0.32
+  armor: 8
+  knockback-resistance: 0.6
+  follow-range: 50
+  scale: 3.0
+  regen-per-second: 0.5
+
+ai:
+  aggression: AGGRESSIVE
+  movement: CHASE
+  aggro-range: 50
+
+traits:
+  - { trait: hunter, drive: true, drive-power: 0.2, reach: 3.0 }
+  - { trait: enrage, threshold: 0.3, strength: 1, speed: 1, message: "<gold>The Chicken King is FURIOUS!" }
+
+skills:
+  - skill: strike
+    label: "Royal Peck"
+    trigger: { types: [TICK], cooldown: 1s, max-range: 3.2, target: TARGET }
+    params: { damage: 8, knockback: 0.5 }
+  - skill: summon
+    label: "Summon the Flock"
+    trigger: { types: [TICK], cooldown: 8s, chance: 0.9 }
+    params: { mob: apocalypse_chicken, count: 3-5, spread: 5, sound: entity_chicken_ambient }
+  - skill: launch_mob
+    label: "Chicken Cannon"
+    trigger: { types: [TICK], cooldown: 5s, max-range: 40, radius: 3, duration: 5s, phases: [rally, fury] }
+    params:
+      mob: kamikaze_chicken
+      speed: 1.5
+      arc: true
+      homing: true
+      damage: 4
+      knockback: 0.7
+      consume-on-impact: false
+      sound: entity_chicken_egg
+  - skill: launch_mob
+    label: "Egg Barrage"
+    trigger: { types: [TICK], cooldown: 9s, max-range: 40, radius: 4, duration: 4s, phases: [fury] }
+    params:
+      mob: apocalypse_chicken
+      count: 1
+      speed: 1.3
+      arc: true
+      impact-summon: apocalypse_chicken
+      impact-summon-count: 2
+
+phases:
+  - id: rally
+    threshold: 0.66
+    damage-mult: 1.15
+    message: "<gold>⚔ The King rallies the flock!"
+    sound: entity_chicken_ambient
+    particle: cloud
+  - id: fury
+    threshold: 0.33
+    damage-mult: 1.35
+    speed-mult: 1.2
+    message: "<gold><bold>☠ POULTRY FURY!</bold>"
+    sound: entity_ravager_roar
+    particle: flame
+
+drops:
+  clear-vanilla: true
+  xp: 200-360
+  items:
+    - { material: GOLD_BLOCK, amount: 2-4, chance: 0.8 }
+    - { material: ENCHANTED_GOLDEN_APPLE, amount: 1-2, chance: 0.6 }
+    - material: GOLDEN_HELMET
+      amount: 1
+      chance: 0.5
+      name: "<gold>Crown of the Chicken King"
+      enchants: { protection: 4 }
+      unbreakable: true
+      glow: true
+
+presentation:
+  glow: true
+  glow-color: YELLOW
+  boss-bar: true
+  boss-bar-color: YELLOW
+  boss-bar-title: "<gradient:#ffd700:#ff8c00><bold>The Chicken King</bold></gradient>"
+  ambient-particle: cloud
+
+scaling:
+  health-per-player: 0.2
+  damage-per-player: 0.05
+  max-players: 10

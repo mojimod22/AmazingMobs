@@ -1,0 +1,42 @@
+# Fodder+: tougher desert raider. Sword-armed, hits harder than a grunt; mid-game filler.
+id: husk_marauder
+name: "<color:#c2b280>Husk Marauder</color>"
+type: HUSK
+tier: UNCOMMON
+category: fodder
+tags: [undead, melee, fodder]
+stats:
+  health: 32
+  damage: 6
+  speed: 0.25
+  armor: 3
+  follow-range: 38
+equipment:
+  main-hand:
+    material: IRON_SWORD
+    drop-chance: 0.04
+  helmet: { material: CHAINMAIL_HELMET, drop-chance: 0.03 }
+ai:
+  aggression: AGGRESSIVE
+  movement: CHASE
+skills:
+  - skill: slow
+    label: "Crushing Blow"
+    trigger:
+      types: [ON_ATTACK]
+      cooldown: 4s
+      target: TARGET
+      duration: 4s
+      chance: 0.5
+    params:
+      effects:
+        - { type: slowness, amplifier: 1 }
+drops:
+  xp: 5-12
+  items:
+    - { material: ROTTEN_FLESH, amount: 1-3, chance: 0.6 }
+    - { material: IRON_NUGGET, amount: 1-3, chance: 0.3 }
+scaling:
+  health-per-player: 0.1
+  damage-per-player: 0.04
+  max-players: 8

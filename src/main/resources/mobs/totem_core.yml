@@ -1,0 +1,30 @@
+# STACK LAYER · the middle of a Living Totem column — a frost caster that chills attackers.
+id: totem_core
+name: "<aqua>Totem Core</aqua>"
+lore: ["<gray>The frozen heart of the totem."]
+type: STRAY
+tier: RARE
+category: totem
+tags: [ice, caster, totem]
+stats:
+  health: 50
+  damage: 2
+  speed: 0
+  armor: 6
+  follow-range: 40
+  knockback-immune: true
+ai:
+  aggression: AGGRESSIVE
+  movement: STATIONARY
+  aggro-range: 40
+traits:
+  - { trait: frost_aura, radius: 6, cooldown: 4s }
+skills:
+  - skill: snowball
+    trigger: { types: [TICK], cooldown: 2s, target: NEAREST_PLAYER, min-range: 4, max-range: 30, chance: 0.8 }
+    params: { type: snowball, count: 2, spread: 0.1 }
+drops:
+  xp: 12-22
+  items:
+    - { material: BLUE_ICE, amount: 1-2, chance: 0.5 }
+scaling: { health-per-player: 0.1, max-players: 8 }

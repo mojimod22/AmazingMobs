@@ -1,0 +1,63 @@
+# CHICKEN EXTINCTION · a relentless tide of mutating chickens (variants emerge from the biome/time/
+# weather) building to the Chicken King. The flagship showcase of variants + director + swarm.
+id: chicken_extinction
+name: "<gold><bold>Chicken Extinction</bold></gold>"
+description: "It's them or us. Probably us."
+difficulty: 1.5
+duration: 12m
+cooldown: 30m
+
+director:
+  enabled: true
+  min-multiplier: 0.8
+  max-multiplier: 2.2
+  step: 0.2
+  target-clear-seconds: 35
+
+area: { shape: CYLINDER, radius: 60, height: 28, dynamic: true }
+spawn: { max-per-tick: 14, max-mobs: 130, min-player-distance: 8, attempts: 22 }
+activation: { min-players: 1, max-players: 12 }
+
+start-title: "<gold><bold>CHICKEN EXTINCTION</bold></gold>"
+start-subtitle: "<red>Run.</red>"
+sound: entity_chicken_hurt
+
+waves:
+  - label: "The First Cluck"
+    start-delay: 3s
+    clear-threshold: 0.8
+    mobs:
+      - { mob: apocalypse_chicken, count: 16-22, per-player: 6 }
+  - label: "Volatile Brood"
+    start-delay: 4s
+    clear-threshold: 0.85
+    mobs:
+      - { mob: apocalypse_chicken, count: 14-18, per-player: 5 }
+      - { mob: kamikaze_chicken, count: 4-6, per-player: 2 }
+  - label: "Royal Guard"
+    start-delay: 4s
+    clear-threshold: 0.9
+    mobs:
+      - { mob: apocalypse_chicken, count: 10-14, per-player: 4 }
+      - { mob: kamikaze_chicken, count: 3-5, per-player: 1 }
+  - label: "The King's Wrath"
+    start-delay: 6s
+    clear-threshold: 1.0
+    title: "<gold><bold>THE CHICKEN KING</bold></gold>"
+    sound: entity_ender_dragon_growl
+    mobs:
+      - { mob: chicken_king, count: 1, role: boss, boss: true }
+      - { mob: apocalypse_chicken, count: 8-12, per-player: 3 }
+
+rewards:
+  xp: 350-620
+  message: "<green>Humanity (barely) prevails."
+  commands:
+    - "title %player% subtitle {\"text\":\"Survivor of the Chicken Extinction\",\"color\":\"gold\"}"
+  items:
+    - { material: GOLD_BLOCK, amount: 1-3, chance: 0.8 }
+    - { material: ENCHANTED_GOLDEN_APPLE, amount: 1-2, chance: 0.5 }
+    - { material: DIAMOND, amount: 3-6, chance: 0.7 }
+
+end-message: "<green><bold>Chicken Extinction averted!</bold>"
+fail-message: "<red>The chickens inherit the earth."
